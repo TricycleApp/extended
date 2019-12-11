@@ -9,7 +9,7 @@ const Product = require('./models/Product');
 
 app.use(cors());
 
-// Connexion à la BDD 
+// Bdd connection
 mongoose.connect('mongodb://localhost/tricycle?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
@@ -19,28 +19,28 @@ mongoose.connect('mongodb://localhost/tricycle?retryWrites=true&w=majority',
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-/** Route pour récupérer les stats/dernier produit */
+/** Get stats & last product */
 app.get('/api/user/stat-history/:id', (req, res) => {
     User.findOne({_id: req.params.id}, {number_scan: 1, history: 1})
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({error}))
 });
 
-/** Route pour récupérer l'historique de scan */
+/** Get history of scan */
 app.get('/api/user/history/:id', (req, res) => {
     User.findOne({_id: req.params.id}, {history: 1})
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({error}))
 });
 
-/** Route pour les informations du profil */
+/** Get information profile */
 app.get('/api/user/:id', (req, res) => {
     User.findOne({_id: req.params.id}, {fullname: 1, mail: 1, timezone: 1, number_scan: 1, registration_date: 1})
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({error}));
 });
 
-/** Route pour récupérer un produit */
+/** Get a product */
 app.get('/api/product/:barcode', (req, res) => {
     
     Product.findOne({ barcode: req.params.barcode })
@@ -58,7 +58,7 @@ app.get('/api/product/:barcode', (req, res) => {
 
 
 
-/** Génération d'une 404 si aucune route n'a matché */
+/** Return 404 */
 app.use((req, res, next) => {
     res.setHeader('Content-Type', 'text/html');
     res.status(404).send("error");
