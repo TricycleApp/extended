@@ -7,9 +7,10 @@ const userSchema = mongoose.Schema(
         password: { type: String, required: true },
         timezone: { type: String, required: true },
         registration_date: { type: String, required: true},
-        number_scan: { type: String, required: true },
-        history: { type: String, required: false }
-    }
+        number_scan: { type: Number, required: true },
+        history: { type: [{}], required: true }
+    },
+    { collection: 'user' }
 );
 
 module.exports = mongoose.model('User', userSchema);
