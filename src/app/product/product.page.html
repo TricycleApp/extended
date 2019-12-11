@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <div class="containProduct">
+          <img src="../../assets/image/product(1).jpg" alt="product image"/>
+        </div>
+      </ion-col>
+      <ion-col class="infoProduct">
+        <div>
+          <h2>Barres chocolatées Kinder Bueno</h2>
+           <b>Kinder</b>
+        </div>
+        <div class="category"><img src="../../assets/image/category.png"/><p>Chocolats & Bonbons</p></div>
+        <div class="settings">
+            <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
+            <div class="settingsContainer" *ngIf="isOpen">
+              <p>Modifier</p>
+              <p>Supprimer</p>
+            </div>  
+          </div>
+      </ion-col>
+    </ion-row>
+    <ion-row size="auto">
+      <ion-col size="auto"><h3>Crée le 25 Novembre 2019</h3></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col id="bin" size="auto">
+            <p>Poubelles</p>
+            <div>
+              <figure>
+                  <img src="../../assets/image/bin.png" alt="poubelle"/>
+                  <figcaption>Poubelle</figcaption>
+              </figure>
+              <figure>
+                  <img src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
+                  <figcaption>Recyclage</figcaption>
+              </figure>
+            </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col id="package">
+          <p>Packaging</p>
+          <div>
+            <figure>
+                <img src="../../assets/image/plastic.png" alt="Plastique"/>
+                <figcaption>Sachet Plastique</figcaption>
+            </figure>
+            <figure>
+                <img src="../../assets/image/cardboard.png" alt="carton" />
+                <figcaption>Boîte en Carton</figcaption>
+            </figure>
+          </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2>Description</h2>
+        <p>La fécule de maïs est principalement utilisée comme épaississant et liant pour les sauces. La poudre blanche et fine a deux fois le pouvoir épaississant de la farine. Comptez 1 cuillère à soupe de fécule de maïs pour remplacer 2 cuillères à soupe de farine.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
