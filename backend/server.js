@@ -1,5 +1,17 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+
+// Connexion à la BDD 
+mongoose.connect('mongodb://localhost/tricycle',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true 
+    })
+    .then(() => console.log('Connexion à Mongodb réussie !'))
+    .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
 
 app.get('/', (req, res) => {
     res.send("test");
