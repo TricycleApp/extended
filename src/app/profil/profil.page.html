@@ -17,12 +17,10 @@
       </ion-col>
       <ion-col size="3">
         <div class="settings">
-          <a>
-            <ion-icon name="md-more"></ion-icon>
-          </a>
-          <div class="settingsContainer">
+          <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
+          <div class="settingsContainer" *ngIf="isOpen">
             <p>Modifier</p>
-            <p>Se déconnecter</p>
+            <p>Déconnexion</p>
           </div>  
         </div>
       </ion-col>

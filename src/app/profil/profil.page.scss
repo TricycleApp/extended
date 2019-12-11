@@ -32,13 +32,9 @@ ion-icon[name="md-more"]{
     position: relative;
     display: flex;
     justify-content: flex-end;
-    a{
-        display: flex;
-        justify-content: flex-end;
         ion-icon{
             display: inline-block;
         }
-    }
 }
 
 
@@ -52,7 +48,7 @@ ion-icon[name="md-more"]{
     top: 35px;
     right:0;
     z-index: 99;
-    display: none;
+    display: block;
 }
 
 .center {
@@ -61,6 +57,10 @@ ion-icon[name="md-more"]{
 
 .settingsContainer p{
     color: var(--gray);
+}
+
+.settingsContainer p:first-of-type{
+    margin-bottom: 20px;
 }
 
 h1{

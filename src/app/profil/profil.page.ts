@@ -9,4 +9,13 @@ export class ProfilPage {
 
   constructor() {}
 
+  public isOpen = false;
+
+  onShowSettings(){
+    if (this.isOpen){
+      this.isOpen = false;
+    } else {
+      this.isOpen = true;
+    }
+  }
 }
