@@ -1,0 +1,135 @@
+ion-content{
+    --background: var(--main-green);
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+#mainProfil {
+    background: var(--main-green);
+    height: 32vh;
+}
+
+
+ion-icon[name="md-more"]{
+    width: 50px;
+    height: 30px;
+    color: var(--gray);
+}
+
+
+#profil{
+    border-radius: 50%;
+    height: 100px;
+}
+
+.settings{
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    a{
+        display: flex;
+        justify-content: flex-end;
+        ion-icon{
+            display: inline-block;
+        }
+    }
+}
+
+
+.settingsContainer{
+    background: var(--white);
+    box-shadow: var(--shadow);
+    text-align: center;
+    padding: 1px 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35px;
+    right:0;
+    z-index: 99;
+    display: none;
+}
+
+.center {
+    margin-bottom: 20px;
+}
+
+.settingsContainer p{
+    color: var(--gray);
+}
+
+h1{
+    font-weight: 900;
+    margin-top: 0;
+}
+
+.fullname{
+    text-align: center;
+}
+
+
+
+// Informations
+
+#infoProfil {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background: var(--white);
+    height: 67vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 40px;
+}
+
+h3{
+    font-size: 1rem;
+    font-weight: 900;
+    display: inline-block;
+}
+
+
+h2{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 50px;
+}
+
+.stat{
+    --ion-grid-column-padding: 0;
+    
+}
+.stat p{
+    font-size: .9rem;
+    display: inline-block;
+}
+
+.spacy{
+    padding-left: 5px;
+}
+
+#nbProducts,
+.signDate{
+    font-weight: bold;
+}
+
+
+#contact{
+    margin-top: 30px;
+    ion-col[size="auto"]{
+        opacity: .5;
+    }
+    ion-col{
+        p{
+            margin:0;
+            font-size: .8rem;
+        }
+    }
+    ion-col:not([size="auto"]){
+        font-weight: bold;
+    }
+}

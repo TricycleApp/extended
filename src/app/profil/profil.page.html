@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Profil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Profil, options -->
+  <ion-grid id="mainProfil">
+    <ion-row justify-content-between>
+      <ion-col size="3">
+      </ion-col>
+      <ion-col size="6" class="center">
+        <img src="../../assets/image/profil.jpg" id="profil"/>
+      </ion-col>
+      <ion-col size="3">
+        <div class="settings">
+          <a>
+            <ion-icon name="md-more"></ion-icon>
+          </a>
+          <div class="settingsContainer">
+            <p>Modifier</p>
+            <p>Se déconnecter</p>
+          </div>  
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="fullname"><h1>Arthur Geay</h1></ion-col>
+    </ion-row>
+  </ion-grid>  
+
+  <!-- Information -->
+  <ion-grid id="infoProfil">
+    <ion-row>
+      <ion-col size="auto"><h3>Mail:</h3></ion-col>
+      <ion-col><p>arthur.geay@mail.com</p></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="auto"><h3>Timezone:</h3></ion-col>
+      <ion-col><p>UTC + 1:00 - Paris</p></ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col><h2>Informations Générales</h2></ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col size="auto"><p>Nombre de produits scannées: </p></ion-col>
+      <ion-col><p class="spacy"><span id="nbProducts">43</span> produits</p></ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col><p>Inscrit depuis le <span class="signDate">29 Janvier 2019</span></p></ion-col>
+    </ion-row>
+    <ion-row id="contact">
+      <ion-col size="auto">
+        <ion-icon name="mail"></ion-icon>
+      </ion-col>
+      <ion-col size="auto">
+          <p>contactez-nous:</p>
+        </ion-col>
+      <ion-col>
+        <p>app.tricycle@gmail.com</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+
+</ion-content>
