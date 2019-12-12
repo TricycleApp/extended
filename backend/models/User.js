@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema(
         timezone: { type: String, required: true },
         registration_date: { type: String, required: true},
         number_scan: { type: Number, required: true },
-        history: { type: [{}], required: true }
+        role: { type: [String], required: true },
+        history: { type: [{}], required: false }
     },
     { collection: 'user' }
 );
