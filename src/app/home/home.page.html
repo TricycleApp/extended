@@ -7,35 +7,80 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/image/TriCycle.png" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>TriCycle</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item routerLink="/signin">
-        <ion-icon slot="start" color="medium" name="log-in"></ion-icon>
-        <ion-label>Connexion</ion-label>
-      </ion-item>
-      <ion-item routerLink="/admin">
-        <ion-icon slot="start" color="medium" name="briefcase"></ion-icon>
-        <ion-label>Admin</ion-label>
-      </ion-item>
-      <ion-item routerLink="/product">
-        <ion-icon slot="start" color="medium" name="pricetag"></ion-icon>
-        <ion-label>Fiche Produit</ion-label>
-      </ion-item>
-      <ion-item routerLink="/create">
-        <ion-icon slot="start" color="medium" name="add"></ion-icon>
-        <ion-label>Création d'un produit</ion-label>
-      </ion-item>
-    </ion-list>
+  <ion-card class="welcome-card">
+    <img src="/assets/image/TriCycle.png" alt="" />
+    <ion-card-header>
+      <ion-card-title>Votre activités</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle
+        >Total Produits scannées : <strong>49</strong></ion-card-subtitle
+      >
+      <ion-card-subtitle
+        >Aujourd'hui vous avez scannées
+        <strong>10</strong> produits</ion-card-subtitle
+      >
+    </ion-card-content>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Resources</ion-label>
+    </ion-list-header>
+    <ion-item routerLink="/signin">
+      <ion-icon slot="start" color="medium" name="log-in"></ion-icon>
+      <ion-label>Connexion</ion-label>
+    </ion-item>
+    <ion-item routerLink="/admin">
+      <ion-icon slot="start" color="medium" name="briefcase"></ion-icon>
+      <ion-label>Admin</ion-label>
+    </ion-item>
+    <ion-item routerLink="/product">
+      <ion-icon slot="start" color="medium" name="pricetag"></ion-icon>
+      <ion-label>Fiche Produit</ion-label>
+    </ion-item>
+    <ion-item routerLink="/create">
+      <ion-icon slot="start" color="medium" name="add"></ion-icon>
+      <ion-label>Création d'un produit</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col><h2>Dernier produit scanné</h2></ion-col>
+    </ion-row>
+    <ion-row size="auto">
+      <ion-col size="auto"><h3>23 Novembre 2019</h3></ion-col>
+    </ion-row>
+    <ion-row class="last">
+      <ion-col size="4">
+        <div class="containProduct">
+          <img src="../../assets/image/product(2).jpg" alt="product image" />
+        </div>
+      </ion-col>
+      <ion-col class="infoProduct">
+        <div>
+          <h2>Pommes de terre rissolées</h2>
+          <b>Findus</b>
+        </div>
+        <div class="category">
+          <img src="../../assets/image/category.png" />
+          <p>Surgelés</p>
+        </div>
+      </ion-col>
+      <ion-col class="bin" size="auto">
+        <div>
+          <p>Poubelles</p>
+          <div>
+            <img src="../../assets/image/bin.png" alt="poubelle" />
+            <img
+              src="../../assets/image/recycling.png"
+              alt="poubelle de recyclage"
+            />
+          </div>
+        </div>
+        <pre>
+              <img src="../../assets/image/light-bulb.png">
+            </pre>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
