@@ -42,13 +42,16 @@ h2{
 }
 
 ion-input{
-    padding: 5px 10px;
     background: var(--white);
     border-radius: 5px;
     margin-bottom: 20px;
-    // box-shadow: var(--shadow);
-    border: 1px solid lightgray;
+    box-shadow: var(--input-shadow);
+    --padding-start: 10px;
+    --padding-end: 10px;
+    font-size: .9rem;
 }
+
+
 ion-button{
     --background: var(--main-green);
     width: 35%;

@@ -1,0 +1,139 @@
+ion-row{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+h1{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+h2{
+    font-size: .9rem;
+    font-weight: bold;
+    color: var(--semi-gray);
+    + p{
+        font-size: .7rem;
+        opacity: .4;
+    }
+}
+
+
+.snap{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#profilPic{
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+
+    + label {
+        height: 50px;
+        width: 50px;
+        background: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    } 
+} 
+
+// Nom du produit
+ion-input{
+    background: var(--white);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: var(--input-shadow);
+    --padding-start: 10px;
+    --padding-end: 10px;
+    font-size: .8rem;
+}
+
+
+
+
+//Catégorie du produit
+ion-select{
+    background: var(--white);
+    padding: 5px 10px 0 10px;
+    --padding-end: 10px;
+    border-radius: 7px;
+    box-shadow: var(--input-shadow);
+    height: 25px;
+    width: 75%;
+    font-size: .8rem;
+}
+
+
+//checkbox
+ion-item{
+    --background: transparent;
+    --inner-border-width: 0;
+    --padding-start: 5px; 
+    border-radius: 7px;
+    --ripple-color: var(--main-green);
+    ion-checkbox{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        --border-width: 0;
+        box-shadow: var(--input-shadow);
+        --background-checked: var(--main-green);
+    }
+    ion-label{
+        p{
+            font-size: .7rem;
+        }
+    }
+} 
+
+
+
+
+// Textarea
+.desc {
+    --border-width: 0;
+    --highlight-background: transparent;
+    width: 100%;
+    --padding-start: 0;
+    --inner-padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-end: 0;
+    div{
+        width: 100%;
+        margin: 0;
+    }
+    ion-textarea {
+        background: var(--white);
+        box-shadow: var(--input-shadow);
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 100%;
+        min-height: 100px;
+        font-size: .7rem;
+        --placeholder-opacity: .5;
+    } 
+}
+
+
+
+// Button
+.center{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+ion-button{
+    --background: var(--main-green);
+    font-weight: bold;
+    font-size: .7rem;
+    text-transform: none;
+    letter-spacing: initial;
+    --box-shadow: var(--button-shadow);
+    --background-activated: var(--main-green);
+    --background-focused: var(--main-green);
+    --background-hover: var(--main-green);
+}

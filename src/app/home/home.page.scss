@@ -1,3 +1,10 @@
+ion-list{
+  background: var(--bg-light);
+  ion-item{
+    --background: var(--bg-light);
+  }
+}
+
 .welcome-card img {
   max-height: 35vh;
   overflow: hidden;

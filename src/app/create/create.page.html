@@ -4,33 +4,45 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg-page">
   <ion-row>
     <ion-col>
-      <h1>Ce produit n'existe pas ! <br>Crée-le !</h1>
+      <h1>Ce produit n'existe pas ! <br />Crée-le !</h1>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <h2>Nom du produit</h2>
-      <ion-input></ion-input>
+      <div>
+        <h2>Nom du produit</h2>
+        <ion-input></ion-input>
+      </div>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <h2>Image du Produit</h2>
-      <ion-input></ion-input>
+      <div class="snap">
+        <h2>Image du Produit</h2>
+        <input type="file" id="profilPic" />
+        <label for="profilPic">
+          <img src="../../assets/image/plus.png" alt="add" />
+        </label>
+      </div>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
       <h2>Catégorie du produit</h2>
-      <ion-select></ion-select>
+      <ion-select placeholder=" Selectionnez une catégorie">
+        <ion-select-option value="sweet and chocolat"
+          >Bonbons & Chocolats</ion-select-option
+        >
+        <ion-select-option value="sugar">Épicerie sucrée</ion-select-option>
+        <ion-select-option value="fruit and vegetables"
+          >Fruits & Légumes</ion-select-option
+        >
+      </ion-select>
     </ion-col>
   </ion-row>
-
-
-
 
   <ion-row>
     <ion-col>
@@ -39,26 +51,50 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col>
-      <ion-list>
-        <ion-item>
-          <ion-label>Sachet Plastique</ion-label>
-          <ion-checkbox></ion-checkbox>
-        </ion-item>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
+    <ion-col size="7">
       <ion-item>
-        <ion-label>Description du produit</ion-label>
-        <ion-textarea placeholder="entrez la description d'un produit"></ion-textarea>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Sachet Plastique</p></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Emballage en carton</p></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Film Plastique</p></ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col size="5">
+      <ion-item>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Verre</p></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Métal</p></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox></ion-checkbox>
+        <ion-label><p>Autres</p></ion-label>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button>Enregistrer le produit</ion-button>
+      <ion-item class="desc">
+        <div>
+          <h2>Description du produit</h2>
+          <ion-textarea
+            placeholder="Entrez la description d'un produit"
+          ></ion-textarea>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="center">
+      <ion-button routerLink="">Enregistrer le produit</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

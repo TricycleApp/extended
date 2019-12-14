@@ -94,14 +94,24 @@
   --main-green: #9AC738;
   --second-green: #D1FF70;
   --light-green: #F3FAE1;
+  --bg-light: #F3F3F3;
   --dim-white: #F3F3F3;
   --white: #FFF;
   --gray: #636363;
+  --semi-gray: #8b8b8b;
   --light-gray: #9a9a9a;
   --ion-font-family: 'proxima_nova', sans-serif;
   --button-shadow: 0px 1px 6px 2px rgba(214,214,214,1);
+  --input-shadow: 1px 1px 4px 1px rgba(214,214,214,0.5);
   --shadow: 0px 2px 5px 1px rgba(0,0,0,0.1);
   --holow-shadow: 0px 2px 8px 1px rgba(0,0,0,0.1);
+
+
+  ion-content{
+    --background: var(--bg-light); 
+  }
+
+
   ion-header{
     ion-toolbar{
       --background: var(--main-green);
@@ -111,6 +121,17 @@
         padding-top: 5px;
       }
     }
+  }
+
+  .alert-button-inner{
+    color: var(--main-green);
+  }
+  button[aria-checked=true] .alert-radio-icon{
+    border-color: var(--main-green)!important;
+  }
+
+  .alert-radio-inner{
+    background: var(--main-green);
   }
 
 }
