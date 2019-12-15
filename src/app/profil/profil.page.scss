@@ -1,3 +1,12 @@
+.ion-activatable {
+    position: relative;
+    overflow: hidden;
+ }
+
+* {
+    outline: none;
+}
+
 ion-content{
     --background: var(--main-green);
 }
@@ -34,6 +43,7 @@ ion-icon[name="md-more"]{
     justify-content: flex-end;
         ion-icon{
             display: inline-block;
+            color: var(--gray);
         }
 }
 
@@ -42,26 +52,25 @@ ion-icon[name="md-more"]{
     background: var(--bg-light);
     box-shadow: var(--shadow);
     text-align: center;
-    padding: 1px 20px;
+    padding: 1px 0;
     border-radius: 10px;
     position: absolute;
     top: 35px;
     right:0;
     z-index: 99;
     display: block;
+    p {
+        padding: 1em 1.5em;
+        margin: 0;
+        color: var(--gray);
+        border-radius: 10px;
+    }
 }
 
 .center {
     margin-bottom: 20px;
 }
 
-.settingsContainer p{
-    color: var(--gray);
-}
-
-.settingsContainer p:first-of-type{
-    margin-bottom: 20px;
-}
 
 h1{
     font-weight: 900;

@@ -1,9 +1,33 @@
+.ion-activatable {
+    position: relative;
+    overflow: hidden;
+}
+*{
+    outline: none;
+}
+
 //Navigation
 nav {
     margin-bottom: 20px;
+    position: relative;
     button {
         background: transparent;
         padding: 15px;
+        font-weight: bold;
+        
+    }
+    #swap{
+        background-color: var(--light-gray);
+        height: 2px;
+        width: 20px;
+        margin-left: 15px;
+        position: absolute;
+        bottom: 13px;
+        left: 0px;
+        transition-duration: .5s;
+    }
+    #swap.slide{
+        left: 84px;
     }
   }
   
@@ -16,7 +40,7 @@ nav {
     margin-bottom: 30px;
     background-color: var(--white);
     border-radius: 15px;
-    min-height: 75px;
+    min-height: 85px;
 }
   
   
@@ -62,7 +86,7 @@ nav {
     button{
         background-color: var(--dim-white);
         font-size: .5em;
-        padding: 5px 5px;
+        padding: 8px 5px;
         border-radius: 5px;
         line-height: 12px;
         max-width: 60px;

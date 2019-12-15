@@ -6,10 +6,11 @@
 
 <ion-content>
   <nav>
-    <button routerLink="/adminprod">Products</button>
-    <button routerLink="/adminuser">Users</button>
+    <button (click)="slidePrev(theSlides)">Products</button>
+    <button (click)="slideNext(theSlides)">Users</button>
+    <div id="swap"></div>
   </nav>
-<ion-slides>
+<ion-slides (ionSlideWillChange)="slide()" #theSlides>
 
   <ion-slide class="product">
     <ion-grid>
@@ -28,8 +29,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -47,8 +54,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -66,8 +79,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -85,8 +104,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -104,8 +129,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -123,8 +154,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -142,8 +179,14 @@
           </div>
         </ion-col>
         <ion-col size="2" class="crud">
-          <button>Edit Product</button>
-          <button>Delete Product</button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Edit product
+          </button>
+          <button class="ion-activatable">
+            <ion-ripple-effect></ion-ripple-effect>
+            Delete product
+          </button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -164,8 +207,14 @@
             <b>arthur.geay@gmail.com</b>
           </ion-col>
           <ion-col size="3" class="crud">
-            <button>Edit user</button>
-            <button>Delete user</button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -179,8 +228,14 @@
             <b>arthur.geay@gmail.com</b>
           </ion-col>
           <ion-col size="3" class="crud">
-            <button>Edit user</button>
-            <button>Delete user</button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -194,8 +249,14 @@
             <b>arthur.geay@gmail.com</b>
           </ion-col>
           <ion-col size="3" class="crud">
-            <button>Edit user</button>
-            <button>Delete user</button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -209,8 +270,14 @@
             <b>arthur.geay@gmail.com</b>
           </ion-col>
           <ion-col size="3" class="crud">
-            <button>Edit user</button>
-            <button>Delete user</button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -224,8 +291,14 @@
             <b>arthur.geay@gmail.com</b>
           </ion-col>
           <ion-col size="3" class="crud">
-            <button>Edit user</button>
-            <button>Delete user</button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
           </ion-col>
         </ion-row>
       </ion-grid>

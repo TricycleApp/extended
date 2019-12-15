@@ -12,4 +12,13 @@ export class AdminPage implements OnInit {
   ngOnInit() {
   }
 
+  slide(){
+    document.querySelector('#swap').classList.toggle('slide');
+  }
+  slideNext(slides){
+    slides.slideTo(2);
+  }
+  slidePrev(slides){
+    slides.slideTo(0);
+  }
 }
