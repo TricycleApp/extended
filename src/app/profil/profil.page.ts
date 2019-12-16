@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profil',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ProfilPage {
 
-  constructor() {}
+  constructor(public alertController: AlertController) {}
 
   public isOpen = false;
 
@@ -17,5 +18,15 @@ export class ProfilPage {
     } else {
       this.isOpen = true;
     }
+  }
+
+  alert() {
+      this.alertController.create({
+      header: 'Voulez vous vraiment supprimer votre profil ?',
+      message: 'En appuyant sur ce bouton votre profil sera supprimer de manière définitive',
+      buttons: ['Annuler', 'Suppprimer le profil']
+    }).then(alert => {
+       alert.present();
+    });
   }
 }
