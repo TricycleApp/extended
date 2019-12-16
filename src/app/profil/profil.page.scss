@@ -7,6 +7,9 @@
     outline: none;
 }
 
+
+
+
 ion-content{
     --background: var(--main-green);
 }
@@ -72,13 +75,27 @@ ion-icon[name="md-more"]{
 }
 
 
-h1{
-    font-weight: 900;
-    margin-top: 0;
-}
+
 
 .fullname{
     text-align: center;
+    h1{
+        font-weight: 900;
+        margin-top: 0;
+    }
+    ion-input {
+        font-size: 1.7rem;
+        font-weight: 900;
+        --padding-bottom: 0;
+        --padding-top: 0;
+        padding: 0;
+        margin-left: 20%;
+        margin-right: 20%;
+        background-color: var(--dim-white);
+        width: auto;
+        border-radius: 8px;
+        border: 0;
+    }
 }
 
 
@@ -93,6 +110,15 @@ h1{
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 40px;
+    ion-input{
+        --padding-top: 0;
+        --padding-bottom: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        border-bottom: 1px solid var(--gray);
+    }
 }
 
 h3{

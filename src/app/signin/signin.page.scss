@@ -26,6 +26,7 @@ ion-row, section{
     flex-direction: column;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 ion-row{
     justify-content: space-around;
@@ -57,9 +58,19 @@ ion-button{
     width: 35%;
     font-weight: bold;
     font-size: .7rem;
+    text-transform: none;
     --box-shadow: var(--button-shadow);
     --background-activated: var(--main-green);
     --background-focused: var(--main-green);
     --background-hover: var(--main-green);
 }
 
+
+.error{
+    background: var(--ion-color-danger);
+    font-size: .9rem;
+    text-align: center;
+    color: var(--ion-color-danger-contrast);
+    padding: 10px 20px;
+    border-radius: 5px;
+}

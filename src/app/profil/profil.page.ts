@@ -11,12 +11,21 @@ export class ProfilPage {
   constructor(public alertController: AlertController) {}
 
   public isOpen = false;
+  public isEdit = false;
 
   onShowSettings(){
     if (this.isOpen){
       this.isOpen = false;
     } else {
       this.isOpen = true;
+    }
+  }
+
+  onEdit(){
+    if (this.isEdit){
+      this.isEdit = false;
+    } else {
+      this.isEdit = true;
     }
   }
 

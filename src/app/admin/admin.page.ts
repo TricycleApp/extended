@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPage implements OnInit {
 
-  constructor() { }
+  constructor(public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -21,4 +22,16 @@ export class AdminPage implements OnInit {
   slidePrev(slides){
     slides.slideTo(0);
   }
+
+  alert() {
+    this.alertController.create({
+    header: 'Voulez vous vraiment supprimer votre produit ?',
+    message: 'En appuyant sur ce bouton votre produit sera supprimer de manière définitive',
+    buttons: ['Annuler', 'Suppprimer le produit']
+  }).then(alert => {
+     alert.present();
+  });
+}
+
+
 }

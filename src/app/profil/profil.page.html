@@ -7,61 +7,116 @@
 </ion-header>
 
 <ion-content>
-
   <!-- Profil, options -->
   <ion-grid id="mainProfil">
     <ion-row class="justify-content-between">
-      <ion-col size="3">
-      </ion-col>
+      <ion-col size="3"> </ion-col>
       <ion-col size="6" class="center">
-        <img src="../../assets/image/profil.jpg" id="profil"/>
+        <img src="../../assets/image/profil.jpg" id="profil" />
       </ion-col>
       <ion-col size="3">
         <div class="settings">
           <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
           <div class="settingsContainer" *ngIf="isOpen">
-            <p class="ion-activatable"><ion-ripple-effect></ion-ripple-effect>Modifier</p>
-            <p class="ion-activatable" (click)="alert()" expand="block"><ion-ripple-effect></ion-ripple-effect>Supprimer</p>
-          </div>  
+            <p class="ion-activatable" (click)="onEdit()">
+              <ion-ripple-effect></ion-ripple-effect>Modifier
+            </p>
+            <p class="ion-activatable" (click)="alert()">
+              <ion-ripple-effect></ion-ripple-effect>Supprimer
+            </p>
+          </div>
         </div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="fullname"><h1>Arthur Geay</h1></ion-col>
+      <ion-col class="fullname">
+        <h1 *ngIf="!isEdit">Arthur Geay</h1>
+        <ion-input *ngIf="isEdit" value="Arthur Geay"></ion-input>
+      </ion-col>
     </ion-row>
-  </ion-grid>  
+  </ion-grid>
 
   <!-- Information -->
   <ion-grid id="infoProfil">
     <ion-row>
-      <ion-col size="auto"><h3>Mail:</h3></ion-col>
-      <ion-col><p>arthur.geay@mail.com</p></ion-col>
+      <ion-col size="auto">
+        <h3>Mail:</h3>
+      </ion-col>
+      <ion-col>
+        <p *ngIf="!isEdit">arthur.geay@mail.com</p>
+        <ion-input *ngIf="isEdit" value="arthur.geay@mail.com"></ion-input>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="auto"><h3>Timezone:</h3></ion-col>
-      <ion-col><p>UTC + 1:00 - Paris</p></ion-col>
+      <ion-col size="auto">
+        <h3>Timezone:</h3>
+      </ion-col>
+      <ion-col>
+        <p *ngIf="!isEdit">UTC + 1:00 - Paris</p>
+        <ion-item *ngIf="isEdit">
+          <ion-label>Select a Timezone</ion-label>
+          <ion-select okText="Selectionner">
+            <ion-select-option value="UTC-12">UTC-12 Baker Island / Howland Island</ion-select-option>
+            <ion-select-option value="UTC-11">UTC-11 Niue / Samoa</ion-select-option>
+            <ion-select-option value="UTC-10">UTC-10 Hawai / Honolulu</ion-select-option>
+            <ion-select-option value="UTC-9">UTC-9 Alaska</ion-select-option>
+            <ion-select-option value="UTC-8">UTC-8 Californie / Vancouver</ion-select-option>
+            <ion-select-option value="UTC-7">UTC-7Arizona / Colorado / Edmonton</ion-select-option>
+            <ion-select-option value="UTC-6">UTC-6 Mexico / Chicago / Texas</ion-select-option>
+            <ion-select-option value="UTC-5">UTC-5 Montréal / Bogotá / Floride</ion-select-option>
+            <ion-select-option value="UTC-4">UTC-4 Guyane / Bermude / Groenland</ion-select-option>
+            <ion-select-option value="UTC-3">UTC-3 Buenos Aires / Rio de Janeiro</ion-select-option>
+            <ion-select-option value="UTC-2">UTC-2 Ile sandwich du Sud</ion-select-option>
+            <ion-select-option value="UTC-1">UTC-1 Cap Vert</ion-select-option>
+            <ion-select-option value="UTC+0">UTC+0 Islande / Lisbonne / Londres</ion-select-option>
+            <ion-select-option value="UTC+1">UTC+1 Paris / Cameroun / Oslo</ion-select-option>
+            <ion-select-option value="UTC+2">UTC+2 Athènes / Le Caire / Cape town</ion-select-option>
+            <ion-select-option value="UTC+3">UTC+3 Mayotte / Moscou / Bagdad</ion-select-option>
+            <ion-select-option value="UTC+4">UTC+4 Maurice / Saint-Denis / Dubaï</ion-select-option>
+            <ion-select-option value="UTC+5">UTC+5 Maldives / Pakistan</ion-select-option>
+            <ion-select-option value="UTC+6">UTC+6 Bangladesh / Kazakhstan</ion-select-option>
+            <ion-select-option value="UTC+7">UTC+7 Jakarta / Mongolie / Thailande</ion-select-option>
+            <ion-select-option value="UTC+8">UTC+8 Pékin / Singapour / Australie-Ouest</ion-select-option>
+            <ion-select-option value="UTC+9">UTC+9 Tokyo / Corée du Sud / Timor Oriental</ion-select-option>
+            <ion-select-option value="UTC+10">UTC+10 Brisbane / Papouasie-Nouvelle-Guinée</ion-select-option>
+            <ion-select-option value="UTC+11">UTC+11 Melbourne / Noumea</ion-select-option>
+            <ion-select-option value="UTC+12">UTC+12 Wallis et Futuna / Iles Marshall</ion-select-option>
+            <ion-select-option value="UTC+13">UTC+13 Fidji / Wellington</ion-select-option>
+            <ion-select-option value="UTC+14">UTC+14 Nouvelle-Zélande</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <ion-row class="stat">
-      <ion-col><h2>Informations Générales</h2></ion-col>
+      <ion-col>
+        <h2>Informations Générales</h2>
+      </ion-col>
     </ion-row>
     <ion-row class="stat">
-      <ion-col size="auto"><p>Nombre de produits scannées: </p></ion-col>
-      <ion-col><p class="spacy"><span id="nbProducts">43</span> produits</p></ion-col>
+      <ion-col size="auto">
+        <p>Nombre de produits scannées:</p>
+      </ion-col>
+      <ion-col>
+        <p class="spacy"><span id="nbProducts">43</span> produits</p>
+      </ion-col>
     </ion-row>
     <ion-row class="stat">
-      <ion-col><p>Inscrit depuis le <span class="signDate">29 Janvier 2019</span></p></ion-col>
+      <ion-col>
+        <p>
+          Inscrit depuis le <span class="signDate">29 Janvier 2019</span>
+        </p>
+      </ion-col>
     </ion-row>
     <ion-row id="contact">
       <ion-col size="auto">
         <ion-icon name="mail"></ion-icon>
       </ion-col>
       <ion-col size="auto">
-          <p>contactez-nous:</p>
-        </ion-col>
+        <p>contactez-nous:</p>
+      </ion-col>
       <ion-col>
         <p>app.tricycle@gmail.com</p>
       </ion-col>
     </ion-row>
-  </ion-grid>  
-
+  </ion-grid>
 </ion-content>

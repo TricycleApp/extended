@@ -22,7 +22,7 @@
             <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
             <div class="settingsContainer" *ngIf="isOpen">
               <p class="ion-activatable"><ion-ripple-effect></ion-ripple-effect>Modifier</p>
-              <p class="ion-activatable"><ion-ripple-effect></ion-ripple-effect>Supprimer</p>
+              <p class="ion-activatable" (click)="alert()"><ion-ripple-effect></ion-ripple-effect>Supprimer</p>
             </div>  
           </div>
       </ion-col>
