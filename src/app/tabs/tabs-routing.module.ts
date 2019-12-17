@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'detail',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../product/product.module').then(m => m.ProductPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
@@ -55,4 +65,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

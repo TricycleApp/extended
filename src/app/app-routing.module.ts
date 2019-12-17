@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -12,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'product',
-    loadChildren: () => import('./product/product.module').then(m => m.ProductPageModule)
+    redirectTo: '/tabs/detail'
   },
   {
     path: 'create',
