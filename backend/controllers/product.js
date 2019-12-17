@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const fetch = require('node-fetch');
 
 /** Return all products */
 exports.getAllProducts = (req, res) => {
