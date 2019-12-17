@@ -9,10 +9,13 @@ const MongoStore = require('connect-mongo')(session);
 const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/product');
 
-app.enable('trust proxy')
 app.disable('x-powered-by');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost'
+}));
 app.use(session({
     name: 'user_sid',
     secret: 'tricycle',
@@ -27,11 +30,6 @@ app.use(session({
         secure: false,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
-}));
-
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost'
 }));
 
 // Bdd connection

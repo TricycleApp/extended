@@ -1,6 +1,15 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
+/** Add a product scanned in history of user */
+exports.addProductInHistory = (req, res) => {
+    User.updateOne({ _id: req.params.id }, { $push: {
+        history: { ...req.body }
+    }})
+    .then(() => res.status(201).json({ message: 'Produit scannés ajouté à l\'historique'}))
+    .catch(error => res.status(400).json({ error }));
+}
+
 /** Return stats and last product scanned for user */
 exports.getStatsAndLastProduct = (req, res) => {
     User.findOne({_id: req.params.id}, {number_scan: 1, history: 1})
