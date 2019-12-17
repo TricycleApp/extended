@@ -24,6 +24,7 @@ ion-content{
 #mainProfil {
     background: var(--main-green);
     height: 32vh;
+    z-index: -2;
 }
 
 
@@ -106,7 +107,6 @@ ion-icon[name="md-more"]{
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     background: var(--bg-light);
-    height: 67vh;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 40px;

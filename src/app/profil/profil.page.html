@@ -12,13 +12,13 @@
     <ion-row class="justify-content-between">
       <ion-col size="3"> </ion-col>
       <ion-col size="6" class="center">
-        <img src="../../assets/image/profil.jpg" id="profil" />
+        <img src="../../assets/image/profil.jpg" id="profil" (click)="saveEdit()" />
       </ion-col>
       <ion-col size="3">
         <div class="settings">
           <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
           <div class="settingsContainer" *ngIf="isOpen">
-            <p class="ion-activatable" (click)="onEdit()">
+            <p class="ion-activatable" *ngIf="!isEdit" (click)="onEdit()">
               <ion-ripple-effect></ion-ripple-effect>Modifier
             </p>
             <p class="ion-activatable" (click)="alert()">

@@ -8,62 +8,129 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4">
-        <div class="containProduct">
-          <img src="../../assets/image/product(1).jpg" alt="product image"/>
+        <div class="containProduct" *ngIf="!isEdit">
+          <img src="../../assets/image/product(1).jpg" alt="product image" />
+        </div>
+        <div class="snap" *ngIf="isEdit">
+          <input type="file" id="profilPic" />
+          <label for="profilPic">
+            <img src="../../assets/image/plus.png" alt="add" />
+          </label>
         </div>
       </ion-col>
       <ion-col class="infoProduct">
         <div>
-          <h2>Barres chocolatées Kinder Bueno</h2>
-           <b>Kinder</b>
+          <h2 *ngIf="!isEdit">Barres chocolatées Kinder Bueno</h2>
+          <ion-input *ngIf="isEdit" value="Barres chocolatées Kinder Bueno" id="name"></ion-input>
+          <b *ngIf="!isEdit">Kinder</b>
+          <ion-input *ngIf="isEdit" value="kinder" id="brand"></ion-input>
         </div>
-        <div class="category"><img src="../../assets/image/category.png"/><p>Chocolats & Bonbons</p></div>
+        <div class="category"><img src="../../assets/image/layers.png" />
+          <p *ngIf="!isEdit">Chocolats & Bonbons</p>
+          <ion-select placeholder="Catégories" *ngIf="isEdit">
+            <ion-select-option value="Bio & Ecologie">Bio & Ecologie</ion-select-option>
+            <ion-select-option value="Fruits & Légumes">Fruits & Légumes</ion-select-option>
+            <ion-select-option value="Viandes et Poissons">Viandes et Poissons</ion-select-option>
+            <ion-select-option value="Pains et Pâtisseries">Pains et Pâtisseries</ion-select-option>
+            <ion-select-option value="Crémerie">Crémerie</ion-select-option>
+            <ion-select-option value="Fromage et Charcuterie">Fromage et Charcuterie</ion-select-option>
+            <ion-select-option value="Traiteur">Traiteur</ion-select-option>
+            <ion-select-option value="Surgelés">Surgelés</ion-select-option>
+            <ion-select-option value="Épicerie Salée">Épicerie Salée</ion-select-option>
+            <ion-select-option value="Épicerie Sucrée">Épicerie Sucrée</ion-select-option>
+            <ion-select-option value="Boissons sans alcool">Boissons sans alcool</ion-select-option>
+            <ion-select-option value="Alcools et Produits apéritifs">Alcools et Produits apéritifs</ion-select-option>
+            <ion-select-option value="Animaux">Animaux</ion-select-option>
+            <ion-select-option value="Parapharmacie">Parapharmacie</ion-select-option>
+            <ion-select-option value="Produits du terroir">Produits du terroir</ion-select-option>
+            <ion-select-option value="Maison & Intérieur">Maison & Intérieur</ion-select-option>
+            <ion-select-option value="Cuisine et arts de la table">Cuisine et arts de la table</ion-select-option>
+            <ion-select-option value="Electroménager">Electroménager</ion-select-option>
+            <ion-select-option value="Jardin & Extérieur">Jardin & Extérieur</ion-select-option>
+            <ion-select-option value="Bricolage & Auto">Bricolage & Auto</ion-select-option>
+            <ion-select-option value="Beauté, entretien et propreté">Beauté, entretien et propreté</ion-select-option>
+            <ion-select-option value="Bagagerie, sport et loisirs">Bagagerie, sport et loisirs</ion-select-option>
+            <ion-select-option value="Téléphonie et objets connectés">Téléphonie et objets connectés
+            </ion-select-option>
+            <ion-select-option value="Image et Son">Image et Son</ion-select-option>
+          </ion-select>
+        </div>
         <div class="settings">
-            <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
-            <div class="settingsContainer" *ngIf="isOpen">
-              <p class="ion-activatable"><ion-ripple-effect></ion-ripple-effect>Modifier</p>
-              <p class="ion-activatable" (click)="alert()"><ion-ripple-effect></ion-ripple-effect>Supprimer</p>
-            </div>  
+          <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
+          <div class="settingsContainer" *ngIf="isOpen">
+            <p class="ion-activatable" *ngIf="!isEdit" (click)="onEdit()">
+              <ion-ripple-effect></ion-ripple-effect>Modifier
+            </p>
+            <p class="ion-activatable" (click)="alert()">
+              <ion-ripple-effect></ion-ripple-effect>Supprimer
+            </p>
           </div>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row size="auto">
-      <ion-col size="auto"><h3>Crée le 25 Novembre 2019</h3></ion-col>
+      <ion-col size="auto">
+        <h3>Crée le 25 Novembre 2019</h3>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col id="bin" size="auto">
-            <p>Poubelles</p>
-            <div>
-              <figure>
-                  <img src="../../assets/image/bin.png" alt="poubelle"/>
-                  <figcaption>Poubelle</figcaption>
-              </figure>
-              <figure>
-                  <img src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
-                  <figcaption>Recyclage</figcaption>
-              </figure>
-            </div>
+        <p>Poubelles</p>
+        <div>
+          <ion-item *ngIf="isEdit">
+            <ion-label>Selectionner le type de poubelle</ion-label>
+            <ion-select>
+              <ion-select-option value="Poubelle">Poubelle</ion-select-option>
+              <ion-select-option value="Recyclage">Recyclage</ion-select-option>
+              <ion-select-option value="Benne à Verre">Benne à Verre</ion-select-option>
+              <ion-select-option value="Dispositif Electroménager">Dispositif Electroménager</ion-select-option>
+              <ion-select-option value="Déchetterie">Déchetterie</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <figure *ngIf="!isEdit">
+            <img src="../../assets/image/bin.png" alt="poubelle" />
+            <figcaption>Poubelle</figcaption>
+          </figure>
+          <figure *ngIf="!isEdit">
+            <img src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
+            <figcaption>Recyclage</figcaption>
+          </figure>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col id="package">
-          <p>Packaging</p>
-          <div>
-            <figure>
-                <img src="../../assets/image/plastic.png" alt="Plastique"/>
-                <figcaption>Sachet Plastique</figcaption>
-            </figure>
-            <figure>
-                <img src="../../assets/image/cardboard.png" alt="carton" />
-                <figcaption>Boîte en Carton</figcaption>
-            </figure>
-          </div>
+        <p>Packaging</p>
+        <div>
+          <ion-item *ngIf="isEdit">
+            <ion-label>Selectionner le type d'emballage</ion-label>
+            <ion-select>
+              <ion-select-option value="Sachet Plastique">Sachet Plastique</ion-select-option>
+              <ion-select-option value="Boîte en Plastique">Boîte en Plastique</ion-select-option>
+              <ion-select-option value="Boîte en Verre">Boîte en Verre</ion-select-option>
+              <ion-select-option value="Boîte en carton">Boîte en carton</ion-select-option>
+              <ion-select-option value="Autre">Autre</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <figure *ngIf="!isEdit">
+            <img src="../../assets/image/plastic.png" alt="Plastique" />
+            <figcaption>Sachet Plastique</figcaption>
+          </figure>
+          <figure *ngIf="!isEdit">
+            <img src="../../assets/image/cardboard.png" alt="carton" />
+            <figcaption>Boîte en Carton</figcaption>
+          </figure>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <h2>Description</h2>
-        <p>La fécule de maïs est principalement utilisée comme épaississant et liant pour les sauces. La poudre blanche et fine a deux fois le pouvoir épaississant de la farine. Comptez 1 cuillère à soupe de fécule de maïs pour remplacer 2 cuillères à soupe de farine.</p>
+        <p *ngIf="!isEdit">La fécule de maïs est principalement utilisée comme épaississant et liant pour les sauces. La
+          poudre blanche
+          et fine a deux fois le pouvoir épaississant de la farine. Comptez 1 cuillère à soupe de fécule de maïs pour
+          remplacer 2 cuillères à soupe de farine.</p>
+        <ion-textarea *ngIf="isEdit"></ion-textarea>
       </ion-col>
     </ion-row>
   </ion-grid>
