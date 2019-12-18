@@ -3,9 +3,12 @@ const bcrypt = require('bcrypt');
 
 /** Add a product scanned in history of user */
 exports.addProductInHistory = (req, res) => {
-    User.updateOne({ _id: req.params.id }, { $push: {
-        history: { ...req.body }
-    }})
+    User.updateOne({ _id: req.params.id }, { 
+        $push: {
+            history: { ...req.body }
+        },
+        $inc: { number_scan: 1 }
+    })
     .then(() => res.status(201).json({ message: 'Produit scannés ajouté à l\'historique'}))
     .catch(error => res.status(400).json({ error }));
 }
