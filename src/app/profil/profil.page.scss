@@ -64,10 +64,11 @@ ion-icon[name="md-more"]{
     z-index: 99;
     display: block;
     p {
-        padding: 1em 1.5em;
+        padding: 1.2em .5em;
         margin: 0;
         color: var(--gray);
         border-radius: 10px;
+        min-width: 180px;
     }
 }
 
@@ -167,4 +168,18 @@ h2{
     ion-col:not([size="auto"]){
         font-weight: bold;
     }
+}
+
+
+
+ion-button{
+    --background: var(--main-green);
+    width: 35%;
+    font-weight: bold;
+    font-size: .7rem;
+    text-transform: none;
+    --box-shadow: var(--button-shadow);
+    --background-activated: var(--main-green);
+    --background-focused: var(--main-green);
+    --background-hover: var(--main-green);
 }

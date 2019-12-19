@@ -34,9 +34,9 @@ export class ProfilPage {
 
   alert() {
     this.alertController.create({
-      header: 'Voulez vous vraiment supprimer votre profil ?',
-      message: 'En appuyant sur ce bouton votre profil sera supprimer de manière définitive',
-      buttons: ['Annuler', 'Suppprimer le profil']
+      header: 'Voulez vous vraiment vous déconnectez ?',
+      message: '',
+      buttons: ['Annuler', 'Se déconnecter']
     }).then(alert => {
       alert.present();
     });

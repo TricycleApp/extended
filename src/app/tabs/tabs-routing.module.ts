@@ -48,6 +48,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'admin',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../admin/admin.module').then(m => m.AdminPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
