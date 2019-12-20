@@ -17,6 +17,6 @@ router.post('/add', auth, productController.addProduct);
 router.put('/edit/:barcode', auth, productController.editProduct);
 
 /** Delete a product */
-router.delete('/delete/:barcode', auth, productController.deleteProduct);
+router.delete('/delete/:id', auth, productController.deleteProduct);
 
 module.exports = router;

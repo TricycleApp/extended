@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 /** Add a product scanned in history of user */
 exports.addProductInHistory = (req, res) => {
@@ -15,14 +16,26 @@ exports.addProductInHistory = (req, res) => {
 
 /** Return stats and last product scanned for user */
 exports.getStatsAndLastProduct = (req, res) => {
-    User.findOne({_id: req.params.id}, {number_scan: 1, history: 1})
+    const userId = mongoose.Types.ObjectId(req.params.id);
+
+    User.aggregate([
+        { $match: { _id: userId }},
+        { $lookup: { from: 'product', localField: 'history.product', foreignField: '_id', as: 'productInfo'} },
+        { $project: { number_scan: 1, productInfo: 1, history: { $slice: ['$history', -1] }, productInfo: { $slice: ['$productInfo', -1]} }}
+    ])
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({error}));
 };
 
 /** Return history of user */
 exports.getHistoryOfUser = (req, res) => {
-    User.findOne({_id: req.params.id}, {history: 1})
+    const userId = mongoose.Types.ObjectId(req.params.id);
+
+    User.aggregate([
+        { $match: {_id: userId }},
+        { $lookup: { from: 'product', localField: 'history.product', foreignField: '_id', as: 'productInfo'} }, 
+        { $project: { history: 1, productInfo: 1 } }
+    ])
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({error}));
 };
