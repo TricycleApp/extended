@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 
 /** Add a product scanned in history of user */
 exports.addProductInHistory = (req, res) => {
+    const idProduct = mongoose.Types.ObjectId(req.body.product);
+    
     User.updateOne({ _id: req.params.id }, { 
         $push: {
-            history: { ...req.body }
+            history: { product: idProduct, date_scan: new Date(), owner: false }
         },
         $inc: { number_scan: 1 }
     })
@@ -80,8 +82,8 @@ exports.login = (req, res) => {
                     if(!valid) {
                         return res.status(401).json({ error: 'Mot de passe incorrect'});
                     }
-                    req.session.user = { userId: user._id, mail: user.mail};
-                    return res.status(200).json({message: 'Utilisateur authentifié'});
+                    req.session.user = { userId: user._id, mail: user.mail, roles: user.roles };
+                    return res.status(200).json({message: 'Utilisateur authentifié', user: { userId: user._id, role: user.roles } });
                 })
                 .catch(error => res.status(500).json({ error }));
         })

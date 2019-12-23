@@ -14,7 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost'
+    origin: function(origin, callback){
+        return callback(null, true);
+    }
 }));
 app.use(session({
     name: 'user_sid',

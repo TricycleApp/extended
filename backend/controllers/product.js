@@ -71,6 +71,7 @@ exports.deleteProduct = (req, res) => {
         User.updateMany({ 
             history: {$elemMatch: { product: { $eq: idProduct } } } 
          }, {
+            $inc: { number_scan: -1 },
             $pull: {history: { product: {$eq: idProduct} } } 
         })
         .then(() => res.status(200).json({message: "Produit supprimé"}))
