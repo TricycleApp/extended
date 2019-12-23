@@ -30,12 +30,13 @@ app.use(session({
         path: '/',
         httpOnly: true,
         secure: false,
+        sameSite: 'none',
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }));
 
-// Bdd connection
-mongoose.connect('mongodb://localhost/tricycle?retryWrites=true&w=majority',
+// Bdd connection mongodb://localhost/tricycle?retryWrites=true&w=majority
+mongoose.connect('mongodb+srv://tricycleadmin:tricycleapp@tricycle-ubhyl.mongodb.net/tricycle?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
