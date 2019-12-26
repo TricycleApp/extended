@@ -5,19 +5,19 @@
   </div>
 
   <ion-row>
-    <section>
-      <div class="error">L'identifiant ou le mot de passe n'est pas valide</div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div class="error" *ngIf="error">L'identifiant ou le mot de passe est invalide</div>
       <div>
         <h2>Identifiant</h2>
-        <ion-input>
+        <ion-input formControlName="mail">
         </ion-input>
       </div>
       <div>
         <h2>Mot de passe</h2>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </div>
-    </section>
-    <ion-button id="connect" routerLink="">Se connecter</ion-button>
+      <ion-button id="connect" type="submit" [disabled]="loginForm.invalid">Se connecter</ion-button>
+    </form>
   </ion-row>
 </ion-content>
 
