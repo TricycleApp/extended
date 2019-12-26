@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,8 +13,9 @@ export class SigninPage implements OnInit {
 
   loginForm: FormGroup;
   error = false;
+  test = '';
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.initForm();
@@ -30,7 +32,12 @@ export class SigninPage implements OnInit {
 
   onSubmitLogin() {
     const formValue = this.loginForm.value;
-    this.error = this.authService.signInUser(formValue['mail'], formValue['password']);
+    this.authService.signInUser(formValue['mail'], formValue['password'])
+      .then(() => this.router.navigate(['']))
+      .catch((error) => {
+          console.log(error);
+          this.error = true; 
+          this.test = error; });
   }
 
 

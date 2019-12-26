@@ -1,43 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isAuth = false;
-  userInfo: {};
+  //userInfo: {};
 
   constructor(private httpClient: HttpClient) {
-    this.checkUseIsConnected();
    }
 
-   checkUseIsConnected() {
-     this.httpClient
-     .get<any>('https://api.app-tricycle.com/api/user/check')
-     .subscribe((response) => {console.log(response)},
-    (error) => console.log(error));
-   }
-
-   signInUser(email: string, password: string): boolean {
+   signInUser(email: string, password: string) {
     const body = { mail: email, password: password };
-    const httpOptions = { withCredentials: true };
-    let error = true;
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}), withCredentials: true };
     
-    this.httpClient
+    return new Promise((resolve, reject) => {
+      this.httpClient
       .post('https://api.app-tricycle.com/api/user/login', body, httpOptions)
-      .subscribe((data) => {
+      .subscribe(
+      (data) => {
         this.isAuth = true;
-        this.userInfo = data.user;
-        error = false;
+        resolve()
       },
-      (error) => {}
+      (error) => reject(error)
       );
+    });
 
-      return error;
+    
+      
    }  
 
    signOut() {
     
    }
 }
+
+
