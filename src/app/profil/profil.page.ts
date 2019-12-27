@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -8,7 +10,10 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class ProfilPage {
 
-  constructor(public alertController: AlertController, public toastController: ToastController) { }
+  constructor(public alertController: AlertController, 
+              public toastController: ToastController, 
+              private authService: AuthService,
+              private router: Router) { }
 
   public isOpen = false;
   public isEdit = false;
@@ -36,7 +41,20 @@ export class ProfilPage {
     this.alertController.create({
       header: 'Voulez vous vraiment vous déconnectez ?',
       message: '',
-      buttons: ['Annuler', 'Se déconnecter']
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        },
+        {
+          text: 'Se déconnecter',
+          handler: () => { 
+            this.authService.signOut()
+              .then(() => this.router.navigate(['signin']))
+              .catch(error => this.router.navigate(['signin']))
+          }
+        }
+      ]
     }).then(alert => {
       alert.present();
     });

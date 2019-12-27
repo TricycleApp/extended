@@ -13,7 +13,6 @@ export class SigninPage implements OnInit {
 
   loginForm: FormGroup;
   error = false;
-  test = '';
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -21,6 +20,7 @@ export class SigninPage implements OnInit {
     this.initForm();
   }
 
+  /** Initialize form */
   initForm() {
     this.loginForm = this.formBuilder.group(
       {
@@ -30,14 +30,17 @@ export class SigninPage implements OnInit {
     );
   }
 
+  /** Catch data when login form data submited */
   onSubmitLogin() {
     const formValue = this.loginForm.value;
     this.authService.signInUser(formValue['mail'], formValue['password'])
-      .then(() => this.router.navigate(['']))
+      .then(() => {
+        this.error = false;
+        this.router.navigate(['']) 
+      })
       .catch((error) => {
-          console.log(error);
-          this.error = true; 
-          this.test = error; });
+          this.error = true;
+       });
   }
 
 
