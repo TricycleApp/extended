@@ -10,42 +10,42 @@ export class AuthService {
   //userInfo: {};
 
   constructor(private httpClient: HttpClient) {
-   }
+  }
 
-   signInUser(email: string, password: string) {
+  signInUser(email: string, password: string) {
     const body = { mail: email, password: password };
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}), withCredentials: true };
-    
-    return new Promise((resolve, reject) => {
-      this.httpClient
-      .post('https://api.app-tricycle.com/api/user/login', body, httpOptions)
-      .subscribe(
-      (data) => {
-        this.isAuth = true;
-        resolve()
-      },
-      (error) => reject(error)
-      );
-    });
-   }
-   
-
-   signOut() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}), withCredentials: true };
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>('https://api.app-tricycle.com/api/user/auth/logout', httpOptions)
-      .subscribe(
-        (data) => {
-          this.isAuth = false; 
-          resolve(data)
-        },
-        (error) => reject(error)
-      )
+        .post('https://api.app-tricycle.com/api/user/login', body, httpOptions)
+        .subscribe(
+          (data) => {
+            this.isAuth = true;
+            resolve()
+          },
+          (error) => reject(error)
+        );
+    });
+  }
+
+
+  signOut() {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
+
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get<any>('https://api.app-tricycle.com/api/user/auth/logout', httpOptions)
+        .subscribe(
+          (data) => {
+            this.isAuth = false;
+            resolve(data)
+          },
+          (error) => reject(error)
+        )
     });
 
-   }
+  }
 }
 
 

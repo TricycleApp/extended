@@ -3,9 +3,8 @@
   <div>
     <h1>Tricycle Extended</h1>
   </div>
-
-  <ion-row>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+    <section>
       <div class="error" *ngIf="error">L'identifiant ou le mot de passe est invalide</div>
       <div>
         <h2>Identifiant</h2>
@@ -16,10 +15,7 @@
         <h2>Mot de passe</h2>
         <ion-input type="password" formControlName="password"></ion-input>
       </div>
-      <ion-button id="connect" type="submit" [disabled]="loginForm.invalid">Se connecter</ion-button>
-    </form>
-  </ion-row>
+    </section>
+    <ion-button id="connect" type="submit" [disabled]="loginForm.invalid">Se connecter</ion-button>
+  </form>
 </ion-content>
-
-
-

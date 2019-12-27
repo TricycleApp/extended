@@ -21,18 +21,19 @@ h1{
 }
 
 
-ion-row, form{
+form{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     position: relative;
 }
-ion-row{
+form{
     justify-content: space-around;
     height: 60vh;
 }
-ion-row div{
+
+form section{
     width: 70%;
 }
 
