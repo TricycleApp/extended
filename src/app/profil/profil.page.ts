@@ -34,7 +34,7 @@ export class ProfilPage {
 
   alert() {
     this.alertController.create({
-      header: 'Voulez vous vraiment vous déconnectez ?',
+      header: 'Voulez vous vraiment vous déconnecter ?',
       message: '',
       buttons: ['Annuler', 'Se déconnecter']
     }).then(alert => {
