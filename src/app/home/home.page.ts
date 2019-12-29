@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private userService: UserService) {
+    this.userService.getStatsAndHistory()
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+  }
 
 }

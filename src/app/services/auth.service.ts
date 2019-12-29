@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isAuth = false;
-  //userInfo: {};
+  userInfo: {};
 
   constructor(private httpClient: HttpClient) {
   }
@@ -20,7 +20,8 @@ export class AuthService {
       this.httpClient
         .post('https://api.app-tricycle.com/api/user/login', body, httpOptions)
         .subscribe(
-          (data) => {
+          (data: any) => {
+            this.userInfo = data.user;
             this.isAuth = true;
             resolve()
           },
