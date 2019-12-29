@@ -19,15 +19,36 @@ exports.addProductInHistory = (req, res) => {
 /** Return stats and last product scanned for user */
 exports.getStatsAndLastProduct = (req, res) => {
     const userId = mongoose.Types.ObjectId(req.params.id);
-
+    let userHistory = null;
+    
+    // Get last scan and total of scan 
     User.aggregate([
         { $match: { _id: userId }},
-        { $lookup: { from: 'product', localField: 'history.product', foreignField: '_id', as: 'productInfo'} },
-        { $project: { number_scan: 1, productInfo: 1, history: { $slice: ['$history', -1] }, productInfo: { $slice: ['$productInfo', -1]} }}
+        { $unwind: '$history' },
+        { $sort: { 'history.date_scan': 1 }},
+        { $group: { _id: '$_id', 'number_scan': { $first: '$number_scan'}, 'list-history': { $push: '$history' } } },
+        { $project: { 'history': { $slice: ['$list-history', -1]}, number_scan: 1 } },
+        { $lookup: { from: 'product', localField: 'history.product', foreignField: '_id', as: 'productInfo'} }
     ])
-        .then(user => res.status(200).json(user))
+        .then(dataHistory => {
+            userHistory = dataHistory;
+            // Get total scan for today
+            User.aggregate([ 
+                { $unwind: '$history' },
+                { $match: { _id: userId, 'history.date_scan': { $gte: new Date(new Date().setHours(00, 00, 00)), $lt: new Date(new Date().setHours(23, 59, 59)) }  }},
+                { $count: 'total_today'}
+            ])
+            .then((userStatsNow) => {
+                const data = userHistory.concat(userStatsNow);
+                res.status(200).json(data);
+            })
+            .catch(error => res.status(404).json({ error }));
+        })
         .catch(error => res.status(404).json({error}));
 };
+
+
+
 
 /** Return history of user */
 exports.getHistoryOfUser = (req, res) => {
