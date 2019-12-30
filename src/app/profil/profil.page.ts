@@ -50,7 +50,10 @@ export class ProfilPage {
           text: 'Se déconnecter',
           handler: () => { 
             this.authService.signOut()
-              .then(() => this.router.navigate(['signin']))
+              .then(() => {
+                this.router.navigate(['signin'])
+                .then(() => window.location.reload())
+              })
               .catch(error => this.router.navigate(['signin']))
           }
         }

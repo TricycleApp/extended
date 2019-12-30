@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card class="welcome-card">
     <img src="/assets/image/TriCycle.png" alt="" />
     <ion-card-header>
@@ -32,7 +35,7 @@
         <h3>{{ userData.history[0].date_scan | date: 'd MMMM yyyy' }}</h3>
       </ion-col>
     </ion-row>
-    <ion-row class="last" routerLink="/product">
+    <ion-row class="last" routerLink="/product/{{ userData.productInfo[0].barcode }}">
       <ion-col size="4" class="ion-no-padding">
         <div class="containProduct">
           <img src="{{ userData.productInfo[0].img}}" alt="product image" />

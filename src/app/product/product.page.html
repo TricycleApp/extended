@@ -12,7 +12,7 @@
     <ion-row>
       <ion-col size="4">
         <div class="containProduct" *ngIf="!isEdit">
-          <img src="../../assets/image/product(1).jpg" alt="product image" />
+          <img src="{{ product?.img  }}" alt="product image" />
         </div>
         <div class="snap" *ngIf="isEdit">
           <input type="file" id="profilPic" />
@@ -23,13 +23,13 @@
       </ion-col>
       <ion-col class="infoProduct">
         <div>
-          <h2 *ngIf="!isEdit">Barres chocolatées Kinder Bueno</h2>
+          <h2 *ngIf="!isEdit">{{ product?.name }}</h2>
           <ion-input *ngIf="isEdit" value="Barres chocolatées Kinder Bueno" id="name"></ion-input>
-          <b *ngIf="!isEdit">Kinder</b>
+          <b *ngIf="!isEdit">{{ product?.brand}}</b>
           <ion-input *ngIf="isEdit" value="kinder" id="brand"></ion-input>
         </div>
         <div class="category"><img src="../../assets/image/layers.png" />
-          <p *ngIf="!isEdit">Chocolats & Bonbons</p>
+          <p *ngIf="!isEdit">{{ product?.categories}}</p>
           <ion-select placeholder="Catégories" *ngIf="isEdit">
             <ion-select-option value="Bio & Ecologie">Bio & Ecologie</ion-select-option>
             <ion-select-option value="Fruits & Légumes">Fruits & Légumes</ion-select-option>
@@ -58,7 +58,7 @@
             <ion-select-option value="Image et Son">Image et Son</ion-select-option>
           </ion-select>
         </div>
-        <div class="settings">
+        <div class="settings" *ngIf="owner">
           <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
           <div class="settingsContainer" *ngIf="isOpen">
             <p class="ion-activatable" *ngIf="!isEdit" (click)="onEdit()">
@@ -73,7 +73,7 @@
     </ion-row>
     <ion-row size="auto">
       <ion-col size="auto">
-        <h3>Crée le 25 Novembre 2019</h3>
+        <h3>{{ product?.creation_date || 'N/D' }}</h3>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -90,11 +90,11 @@
               <ion-select-option value="Déchetterie">Déchetterie</ion-select-option>
             </ion-select>
           </ion-item>
-          <figure *ngIf="!isEdit">
+          <figure *ngIf="!isEdit && product?.bin.includes('bleu') ">
             <img src="../../assets/image/bin.png" alt="poubelle" />
             <figcaption>Poubelle</figcaption>
           </figure>
-          <figure *ngIf="!isEdit">
+          <figure *ngIf="!isEdit && product?.bin.includes('jaune')">
             <img src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
             <figcaption>Recyclage</figcaption>
           </figure>
@@ -115,11 +115,11 @@
               <ion-select-option value="Autre">Autre</ion-select-option>
             </ion-select>
           </ion-item>
-          <figure *ngIf="!isEdit">
+          <figure *ngIf="!isEdit && product?.packaging.includes('Sachet plastique')">
             <img src="../../assets/image/plastic.png" alt="Plastique" />
             <figcaption>Sachet Plastique</figcaption>
           </figure>
-          <figure *ngIf="!isEdit">
+          <figure *ngIf="!isEdit && product?.packaging.includes('carton')">
             <img src="../../assets/image/cardboard.png" alt="carton" />
             <figcaption>Boîte en Carton</figcaption>
           </figure>
@@ -129,10 +129,7 @@
     <ion-row>
       <ion-col>
         <h2>Description</h2>
-        <p *ngIf="!isEdit">La fécule de maïs est principalement utilisée comme épaississant et liant pour les sauces. La
-          poudre blanche
-          et fine a deux fois le pouvoir épaississant de la farine. Comptez 1 cuillère à soupe de fécule de maïs pour
-          remplacer 2 cuillères à soupe de farine.</p>
+        <p *ngIf="!isEdit">{{ product?.description }}</p>
         <ion-textarea *ngIf="isEdit"></ion-textarea>
       </ion-col>
     </ion-row>
