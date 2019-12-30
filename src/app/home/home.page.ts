@@ -8,9 +8,13 @@ import { UserService } from '../services/user.service';
 })
 export class HomePage {
 
+  userHistory: [{}];
+
   constructor(private userService: UserService) {
     this.userService.getStatsAndHistory()
-    .then(data => console.log(data))
+    .then((data: [{}]) => {
+      this.userHistory = data;
+    })
     .catch(error => console.log(error))
   }
 
