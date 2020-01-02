@@ -40,7 +40,8 @@ const addProductInHistory = (idUser, idProduct) => {
 /** Add a product  */
 exports.addProduct = (req, res) => {
     const product = new Product({
-        ...req.body
+        ...req.body,
+        creation_date: new Date()
     });
     
     product.save()
