@@ -10,7 +10,8 @@ const productSchema = mongoose.Schema(
         packaging: { type: [String], required: true},
         img: { type: String, required: false },
         description: { type: String, required: true},
-        bin: { type: [String], required: true}
+        bin: { type: [String], required: true},
+        creation_date: { type: String, required: true }
     },
     { collection: 'product' }
 );
