@@ -9,13 +9,15 @@
 
 <ion-content>
   <ion-grid>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmitForm()">
+      <div class="error" *ngIf="isEdit && productForm.invalid">Veuillez remplir tous les champs</div>
     <ion-row>
       <ion-col size="4">
         <div class="containProduct" *ngIf="!isEdit">
           <img src="{{ product?.img  }}" alt="product image" />
         </div>
         <div class="snap" *ngIf="isEdit">
-          <input type="file" id="profilPic" />
+          <input type="file" accept="image/*" id="profilPic" formControlName="img"/>
           <label for="profilPic">
             <img src="../../assets/image/plus.png" alt="add" />
           </label>
@@ -24,38 +26,38 @@
       <ion-col class="infoProduct">
         <div>
           <h2 *ngIf="!isEdit">{{ product?.name }}</h2>
-          <ion-input *ngIf="isEdit" value="Barres chocolatées Kinder Bueno" id="name"></ion-input>
+          <ion-input *ngIf="isEdit" id="name" formControlName="name"></ion-input>
           <b *ngIf="!isEdit">{{ product?.brand}}</b>
-          <ion-input *ngIf="isEdit" value="kinder" id="brand"></ion-input>
+          <ion-input *ngIf="isEdit" id="brand" formControlName="brand"></ion-input>
         </div>
         <div class="category"><img src="../../assets/image/layers.png" />
           <p *ngIf="!isEdit">{{ product?.categories}}</p>
-          <ion-select placeholder="Catégories" *ngIf="isEdit">
-            <ion-select-option value="Bio & Ecologie">Bio & Ecologie</ion-select-option>
-            <ion-select-option value="Fruits & Légumes">Fruits & Légumes</ion-select-option>
-            <ion-select-option value="Viandes et Poissons">Viandes et Poissons</ion-select-option>
-            <ion-select-option value="Pains et Pâtisseries">Pains et Pâtisseries</ion-select-option>
-            <ion-select-option value="Crémerie">Crémerie</ion-select-option>
-            <ion-select-option value="Fromage et Charcuterie">Fromage et Charcuterie</ion-select-option>
-            <ion-select-option value="Traiteur">Traiteur</ion-select-option>
-            <ion-select-option value="Surgelés">Surgelés</ion-select-option>
-            <ion-select-option value="Épicerie Salée">Épicerie Salée</ion-select-option>
-            <ion-select-option value="Épicerie Sucrée">Épicerie Sucrée</ion-select-option>
-            <ion-select-option value="Boissons sans alcool">Boissons sans alcool</ion-select-option>
-            <ion-select-option value="Alcools et Produits apéritifs">Alcools et Produits apéritifs</ion-select-option>
-            <ion-select-option value="Animaux">Animaux</ion-select-option>
-            <ion-select-option value="Parapharmacie">Parapharmacie</ion-select-option>
-            <ion-select-option value="Produits du terroir">Produits du terroir</ion-select-option>
-            <ion-select-option value="Maison & Intérieur">Maison & Intérieur</ion-select-option>
-            <ion-select-option value="Cuisine et arts de la table">Cuisine et arts de la table</ion-select-option>
-            <ion-select-option value="Electroménager">Electroménager</ion-select-option>
-            <ion-select-option value="Jardin & Extérieur">Jardin & Extérieur</ion-select-option>
-            <ion-select-option value="Bricolage & Auto">Bricolage & Auto</ion-select-option>
-            <ion-select-option value="Beauté, entretien et propreté">Beauté, entretien et propreté</ion-select-option>
-            <ion-select-option value="Bagagerie, sport et loisirs">Bagagerie, sport et loisirs</ion-select-option>
-            <ion-select-option value="Téléphonie et objets connectés">Téléphonie et objets connectés
+          <ion-select placeholder="Catégories" *ngIf="isEdit" formControlName="categories">
+            <ion-select-option value="Bio & Ecologie" [selected]="product?.categories == 'Bio & Ecologie'">Bio & Ecologie</ion-select-option>
+            <ion-select-option value="Fruits & Légumes" [selected]="product?.categories == 'Fruits & Légumes'">Fruits & Légumes</ion-select-option>
+            <ion-select-option value="Viandes et Poissons" [selected]="product?.categories == 'Viandes et Poissons'">Viandes et Poissons</ion-select-option>
+            <ion-select-option value="Pains et Pâtisseries" [selected]="product?.categories == 'Pains et Pâtisseries'">Pains et Pâtisseries</ion-select-option>
+            <ion-select-option value="Crémerie" [selected]="product?.categories == 'Crémerie'">Crémerie</ion-select-option>
+            <ion-select-option value="Fromage et Charcuterie" [selected]="product?.categories == 'Fromage et Charcuterie'">Fromage et Charcuterie</ion-select-option>
+            <ion-select-option value="Traiteur" [selected]="product?.categories == 'Traiteur'">Traiteur</ion-select-option>
+            <ion-select-option value="Surgelés" [selected]="product?.categories == 'Surgelés'">Surgelés</ion-select-option>
+            <ion-select-option value="Épicerie Salée" [selected]="product?.categories == 'Épicerie Salée'">Épicerie Salée</ion-select-option>
+            <ion-select-option value="Épicerie Sucrée" [selected]="product?.categories == 'Épicerie Sucrée'">Épicerie Sucrée</ion-select-option>
+            <ion-select-option value="Boissons sans alcool" [selected]="product?.categories == 'Boissons sans alcool'">Boissons sans alcool</ion-select-option>
+            <ion-select-option value="Alcools et Produits apéritifs" [selected]="product?.categories == 'Alcools et Produits apéritifs'">Alcools et Produits apéritifs</ion-select-option>
+            <ion-select-option value="Animaux" [selected]="product?.categories == 'Animaux'">Animaux</ion-select-option>
+            <ion-select-option value="Parapharmacie" [selected]="product?.categories == 'Parapharmacie'">Parapharmacie</ion-select-option>
+            <ion-select-option value="Produits du terroir" [selected]="product?.categories == 'Produits du terroir'">Produits du terroir</ion-select-option>
+            <ion-select-option value="Maison & Intérieur" [selected]="product?.categories == 'Maison & Intérieur'">Maison & Intérieur</ion-select-option>
+            <ion-select-option value="Cuisine et arts de la table" [selected]="product?.categories == 'Cuisine et arts de la table'">Cuisine et arts de la table</ion-select-option>
+            <ion-select-option value="Electroménager" [selected]="product?.categories == 'Electroménager'">Electroménager</ion-select-option>
+            <ion-select-option value="Jardin & Extérieur" [selected]="product?.categories == 'Jardin & Extérieur'">Jardin & Extérieur</ion-select-option>
+            <ion-select-option value="Bricolage & Auto" [selected]="product?.categories == 'Bricolage & Auto'">Bricolage & Auto</ion-select-option>
+            <ion-select-option value="Beauté, entretien et propreté" [selected]="product?.categories == 'Beauté, entretien et propreté'">Beauté, entretien et propreté</ion-select-option>
+            <ion-select-option value="Bagagerie, sport et loisirs" [selected]="product?.categories == 'Bagagerie, sport et loisirs'">Bagagerie, sport et loisirs</ion-select-option>
+            <ion-select-option value="Téléphonie et objets connectés" [selected]="product?.categories == 'Téléphonie et objets connectés'">Téléphonie et objets connectés
             </ion-select-option>
-            <ion-select-option value="Image et Son">Image et Son</ion-select-option>
+            <ion-select-option value="Image et Son" [selected]="product?.categories == 'Image et Son'">Image et Son</ion-select-option>
           </ion-select>
         </div>
         <div class="settings" *ngIf="owner">
@@ -73,7 +75,7 @@
     </ion-row>
     <ion-row size="auto">
       <ion-col size="auto">
-        <h3>{{ product?.creation_date || 'N/D' }}</h3>
+        <h3>{{ product?.creation_date | date: 'd MMMM yyyy' || 'N/D' }}</h3>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -82,12 +84,12 @@
         <div>
           <ion-item *ngIf="isEdit">
             <ion-label>Selectionner le type de poubelle</ion-label>
-            <ion-select>
-              <ion-select-option value="Poubelle">Poubelle</ion-select-option>
-              <ion-select-option value="Recyclage">Recyclage</ion-select-option>
-              <ion-select-option value="Benne à Verre">Benne à Verre</ion-select-option>
-              <ion-select-option value="Dispositif Electroménager">Dispositif Electroménager</ion-select-option>
-              <ion-select-option value="Déchetterie">Déchetterie</ion-select-option>
+            <ion-select formControlName="bin">
+              <ion-select-option value="bleu" [selected]="product?.bin.includes('bleu')">Poubelle</ion-select-option>
+              <ion-select-option value="jaune" [selected]="product?.bin.includes('jaune')">Recyclage</ion-select-option>
+              <ion-select-option value="verre" [selected]="product?.bin.includes('verre')">Benne à Verre</ion-select-option>
+              <ion-select-option value="electromenager" [selected]="product?.bin.includes('electromenager')">Dispositif Electroménager</ion-select-option>
+              <ion-select-option value="dechetterie" [selected]="product?.bin.includes('dechetterie')">Déchetterie</ion-select-option>
             </ion-select>
           </ion-item>
           <figure *ngIf="!isEdit && product?.bin.includes('bleu') ">
@@ -107,12 +109,12 @@
         <div>
           <ion-item *ngIf="isEdit">
             <ion-label>Selectionner le type d'emballage</ion-label>
-            <ion-select>
-              <ion-select-option value="Sachet Plastique">Sachet Plastique</ion-select-option>
-              <ion-select-option value="Boîte en Plastique">Boîte en Plastique</ion-select-option>
-              <ion-select-option value="Boîte en Verre">Boîte en Verre</ion-select-option>
-              <ion-select-option value="Boîte en carton">Boîte en carton</ion-select-option>
-              <ion-select-option value="Autre">Autre</ion-select-option>
+            <ion-select formControlName="packaging">
+              <ion-select-option value="Sachet plastique" [selected]="product?.packaging.includes('Sachet plastique')">Sachet Plastique</ion-select-option>
+              <ion-select-option value="Boîte en plastique" [selected]="product?.packaging.includes('Boîte en plastique')">Boîte en Plastique</ion-select-option>
+              <ion-select-option value="Boîte en verre" [selected]="product?.packaging.includes('Boîte en verre')">Boîte en Verre</ion-select-option>
+              <ion-select-option value="Boîte en carton" [selected]="product?.packaging.includes('Boîte en carton')">Boîte en carton</ion-select-option>
+              <ion-select-option value="Autre" [selected]="product?.packaging.includes('Autre')">Autre</ion-select-option>
             </ion-select>
           </ion-item>
           <figure *ngIf="!isEdit && product?.packaging.includes('Sachet plastique')">
@@ -130,9 +132,10 @@
       <ion-col>
         <h2>Description</h2>
         <p *ngIf="!isEdit">{{ product?.description }}</p>
-        <ion-textarea *ngIf="isEdit"></ion-textarea>
+        <ion-textarea *ngIf="isEdit" formControlName="description"></ion-textarea>
       </ion-col>
     </ion-row>
+    </form>
   </ion-grid>
 
 </ion-content>
