@@ -11,7 +11,6 @@ export class HomePage implements OnInit{
   userHistory: [{}];
 
   ngOnInit() {
-    this.getData();
   }
 
   constructor(private userService: UserService) {
@@ -27,6 +26,10 @@ export class HomePage implements OnInit{
       }
     })
     .catch(error => console.log(error))
+  }
+
+  ionViewWillEnter() {
+    this.getData();
   }
 
 }

@@ -32,10 +32,16 @@ export class ProductPage implements OnInit {
               }
 
   ngOnInit() {
+    // const barcode = this.route.snapshot.params['barcode'];
+    // this.getProduct(barcode);
+    // this.isOwner();
+    this.initForm();
+  }
+
+  ionViewWillEnter() {
     const barcode = this.route.snapshot.params['barcode'];
     this.getProduct(barcode);
     this.isOwner();
-    this.initForm();
   }
 
   onShowSettings() {
@@ -58,17 +64,35 @@ export class ProductPage implements OnInit {
     }
   }
 
+  /* Display alert for delete product */
   alert() {
     this.alertController.create({
       header: 'Voulez vous vraiment supprimer votre produit ?',
       message: 'En appuyant sur ce bouton votre produit sera supprimer de manière définitive',
-      buttons: ['Annuler', 'Suppprimer le produit']
+      //buttons: ['Annuler', 'Suppprimer le produit']
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        },
+        {
+          text: 'Supprimer le produit',
+          handler: () => {
+            this.productService.deleteProduct(this.product._id)
+            .then(() => {
+              this.router.navigate([''])
+              .then(() => this.userService.getStatsAndHistory())
+            })
+            .catch(error => console.log(error));
+          }
+        }
+      ]
     }).then(alert => {
       alert.present();
     });
   }
 
-
+  /* Display toast for save information of product */
   saveEdit() {
     this.toastController.create({
       color: 'medium',
@@ -97,6 +121,7 @@ export class ProductPage implements OnInit {
     });
   }
 
+  /* Get product information */
   getProduct(barcode: string) {
     this.productService.getProduct(barcode)
     .then(data => {
@@ -106,6 +131,7 @@ export class ProductPage implements OnInit {
     .catch(error => console.log(error))
   }
 
+  /* Check if the user is the owner of product */
   isOwner() {
     this.userService.getAllHistory()
     .then((data: any) => {
@@ -119,6 +145,7 @@ export class ProductPage implements OnInit {
     .catch(error => console.log(error))
   }
 
+  /* Initialize forms */
   initForm() {
     this.productForm = this.formBuilder.group(
       {
@@ -133,6 +160,7 @@ export class ProductPage implements OnInit {
     )
   }
 
+  /* Set default value of product for form value */
   setValueForm() {
     this.productForm.setValue({
         name: this.product.name,
@@ -145,6 +173,7 @@ export class ProductPage implements OnInit {
     });
   }
 
+  /* Send data when form is submitted */
   onSubmitForm() {
       const formValue = this.productForm.value;
 
@@ -155,6 +184,7 @@ export class ProductPage implements OnInit {
       .catch(error => console.log(error));
   }
 
+  /* Get file when is upload by user */
   onFileChange(event) {
     if(event.target.files.length > 0) {
       const file = event.target.files[0];
