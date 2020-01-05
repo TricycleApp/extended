@@ -3,6 +3,7 @@ const router = express.Router();
 const productController = require('../controllers/product');
 
 const auth = require('../controllers/middleware/auth');
+const multer = require('../controllers/middleware/multer-config');
 
 /** Get all products */
 router.get('/all', auth, productController.getAllProducts);
@@ -14,7 +15,7 @@ router.get('/:barcode', auth, productController.getProduct);
 router.post('/add', auth, productController.addProduct);
 
 /** Edit a product */
-router.put('/edit/:barcode', auth, productController.editProduct);
+router.put('/edit/:barcode', auth, multer, productController.editProduct);
 
 /** Delete a product */
 router.delete('/delete/:id', auth, productController.deleteProduct);

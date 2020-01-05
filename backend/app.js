@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const path = require('path');
 
 // Routes
 const userRoutes = require('./routes/user');
@@ -43,6 +44,7 @@ mongoose.connect('mongodb+srv://tricycleadmin:tricycleapp@tricycle-ubhyl.mongodb
     .then(() => console.log('Connexion à Mongodb réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/user', userRoutes);
 app.use('/api/product', productRoutes);

@@ -57,10 +57,17 @@ exports.addProduct = (req, res) => {
 
 /** Edit a product */
 exports.editProduct = (req, res) => {
-    Product.updateOne({ barcode: req.params.barcode }, { ...req.body})
-        .then(() => res.status(200).json({ message: 'Produit mis à jour'}))
-        .catch(error => res.status(400).json({error}));
-};
+    const productObject = req.file ?
+    {
+     ...JSON.parse(req.body.product),
+         img: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    }: { ...JSON.parse(req.body.product) };
+ 
+ 
+     Product.updateOne({ barcode: req.params.barcode }, { ...productObject})
+         .then(() => res.status(200).json({ message: 'Produit mis à jour'}))
+         .catch(error => res.status(400).json({error}));
+ };
 
 /** Delete a product */
 exports.deleteProduct = (req, res) => {
