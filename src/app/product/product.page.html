@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-grid>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmitForm()">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmitForm()" enctype="multipart/form-data">
       <div class="error" *ngIf="isEdit && productForm.invalid">Veuillez remplir tous les champs</div>
     <ion-row>
       <ion-col size="4">
@@ -17,7 +17,7 @@
           <img src="{{ product?.img  }}" alt="product image" />
         </div>
         <div class="snap" *ngIf="isEdit">
-          <input type="file" accept="image/*" id="profilPic" formControlName="img"/>
+          <input type="file" accept="image/*" id="profilPic" formControlName="img" (change)="onFileChange($event)" />
           <label for="profilPic">
             <img src="../../assets/image/plus.png" alt="add" />
           </label>

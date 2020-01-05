@@ -16,6 +16,7 @@ export class ProductPage implements OnInit {
   product: any;
   owner: boolean;
   productForm: FormGroup;
+  imgPath: File = null;
 
   public isOpen = false;
   public isEdit = false;
@@ -146,11 +147,19 @@ export class ProductPage implements OnInit {
 
   onSubmitForm() {
       const formValue = this.productForm.value;
-      const product = new Product(formValue['name'], formValue['brand'], formValue['categories'], formValue['packaging'], formValue['description'], formValue['bin'], formValue['img']);
 
-      this.productService.updateProduct(this.product.barcode, product)
+      const product = new Product(formValue['name'], formValue['brand'], formValue['categories'], formValue['packaging'], formValue['description'], formValue['bin']);
+
+      this.productService.updateProduct(this.product.barcode, product, this.imgPath)
       .then(() => this.getProduct(this.product.barcode))
       .catch(error => console.log(error));
+  }
+
+  onFileChange(event) {
+    if(event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.imgPath = file;
+    }
   }
 
 
