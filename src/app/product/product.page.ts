@@ -32,9 +32,6 @@ export class ProductPage implements OnInit {
               }
 
   ngOnInit() {
-    // const barcode = this.route.snapshot.params['barcode'];
-    // this.getProduct(barcode);
-    // this.isOwner();
     this.initForm();
   }
 
