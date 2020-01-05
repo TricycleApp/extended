@@ -38,7 +38,6 @@ export class ProductPage implements OnInit {
   ionViewWillEnter() {
     const barcode = this.route.snapshot.params['barcode'];
     this.getProduct(barcode);
-    this.isOwner();
   }
 
   onShowSettings() {
@@ -125,6 +124,7 @@ export class ProductPage implements OnInit {
       this.product = data;
       this.setValueForm();
     })
+    .then(() => this.isOwner())
     .catch(error => console.log(error))
   }
 
