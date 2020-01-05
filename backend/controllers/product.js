@@ -2,6 +2,7 @@ const Product = require('../models/Product');
 const User = require('../models/User');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 
 /** Return all products */
@@ -73,17 +74,26 @@ exports.editProduct = (req, res) => {
 exports.deleteProduct = (req, res) => {
     const idProduct = mongoose.Types.ObjectId(req.params.id);
 
-    Product.deleteOne({ _id: req.params.id })
-    .then(() => {
-        // Update history of user
-        User.updateMany({ 
-            history: {$elemMatch: { product: { $eq: idProduct } } } 
-         }, {
-            $inc: { number_scan: -1 },
-            $pull: {history: { product: {$eq: idProduct} } } 
+    Product.findOne({ _id: req.params.id })
+        .then(product => {
+            const filename = product.img.split('/images/')[1];
+
+            fs.unlink(`images/${filename}`, () => {
+
+                Product.deleteOne({ _id: req.params.id })
+                    .then(() => {
+                        // Update history of user
+                        User.updateMany({ 
+                            history: {$elemMatch: { product: { $eq: idProduct } } } 
+                        }, {
+                            $inc: { number_scan: -1 },
+                            $pull: {history: { product: {$eq: idProduct} } } 
+                        })
+                        .then(() => res.status(200).json({message: "Produit supprimé"}))
+                        .catch(error => res.status(400).json({ error }));
+                    })
+                    .catch(error => res.status(400).json({ error }));
+            });
         })
-        .then(() => res.status(200).json({message: "Produit supprimé"}))
-        .catch(error => res.status(400).json({ error }));
-    })
-    .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(500).json({ error }));
 };
