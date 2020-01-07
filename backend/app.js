@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // Routes
 const userRoutes = require('./routes/user');
@@ -33,6 +34,16 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }));
+
+app.use(cookieParser());
+
+/* When session is expired but cookie is still saved in the device */
+app.use((req, res, next) => {
+    if(!req.session.user && req.cookies.user_sid) {
+        res.clearCookie('user_sid');
+    }
+    next();
+});
 
 // Bdd connection mongodb://localhost/tricycle?retryWrites=true&w=majority
 mongoose.connect('mongodb+srv://tricycleadmin:tricycleapp@tricycle-ubhyl.mongodb.net/tricycle?retryWrites=true&w=majority',
