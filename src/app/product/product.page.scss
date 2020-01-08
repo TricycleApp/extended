@@ -208,6 +208,15 @@ b {
   }
 }
 
+.error{
+  background: var(--ion-color-danger);
+  font-size: .9rem;
+  text-align: center;
+  color: var(--ion-color-danger-contrast);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
 
 
 ion-textarea{

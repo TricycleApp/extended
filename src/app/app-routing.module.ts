@@ -14,9 +14,9 @@ const routes: Routes = [
     loadChildren: () => import('./signin/signin.module').then(m => m.SigninPageModule)
   },
   {
-    path: 'product',
+    path: 'product/:barcode',
     canActivate: [AuthGuardService],
-    redirectTo: '/tabs/detail'
+    redirectTo: '/tabs/detail/:barcode'
   },
   {
     path: 'create',

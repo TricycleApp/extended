@@ -7,37 +7,36 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-grid>
+  <ion-grid *ngFor="let data of productsHistory">
     <ion-row size="auto">
       <ion-col size="auto">
-        <h3>25 Novembre 2019</h3>
+        <h3>{{ data.date_scan | date: 'd MMMM yyyy'}}</h3>
       </ion-col>
     </ion-row>
-    <ion-row routerLink="/product">
+    <ion-row routerLink="/product/{{ data.productInfo.barcode }}">
       <ion-col size="4" class="ion-no-padding">
         <div class="containProduct">
-          <img src="../../assets/image/product(1).jpg" alt="product image" />
+          <img src="{{ data.productInfo.img }}" alt="product image" />
         </div>
       </ion-col>
       <ion-col class="infoProduct">
         <div>
-          <h2>Barres chocolatées Kinder Bueno</h2>
-          <b>Kinder</b>
+          <h2>{{ data.productInfo.name }}</h2>
+          <b>{{ data.productInfo.brand }}</b>
         </div>
         <div class="category"><img src="../../assets/image/layers.png" />
-          <p>Chocolats & Bonbons</p>
+          <p>{{ data.productInfo.categories }}</p>
         </div>
       </ion-col>
       <ion-col class="bin" size="auto">
         <div>
           <p>Poubelles</p>
           <div>
-            <img src="../../assets/image/bin.png" alt="poubelle" />
-            <img src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
+            <img *ngIf="data.productInfo.bin.includes('bleu')" src="../../assets/image/bin.png" alt="poubelle" />
+            <img *ngIf="data.productInfo.bin.includes('jaune')" src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
           </div>
         </div>
-        <pre>
+        <pre *ngIf="data.owner">
           <img src="../../assets/image/light-bulb.png">
         </pre>
       </ion-col>
@@ -45,7 +44,7 @@
   </ion-grid>
 
 
-
+<!-- 
   <ion-grid>
     <ion-row size="auto">
       <ion-col size="auto">
@@ -197,6 +196,6 @@
                 </pre>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
 </ion-content>
