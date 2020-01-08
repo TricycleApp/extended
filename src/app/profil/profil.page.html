@@ -8,6 +8,8 @@
 
 <ion-content>
   <!-- Profil, options -->
+  <form [formGroup]="profilForm" (ngSubmit)="onSubmitForm()">
+    <div class="error" *ngIf="isEdit && profilForm.invalid">Veuillez remplir tous les champs</div>
   <ion-grid id="mainProfil">
     <ion-row class="justify-content-between">
       <ion-col size="3"> </ion-col>
@@ -31,7 +33,7 @@
     <ion-row>
       <ion-col class="fullname">
         <h1 *ngIf="!isEdit">{{ infoUser?.fullname }}</h1>
-        <ion-input *ngIf="isEdit" value="Arthur Geay"></ion-input>
+        <ion-input *ngIf="isEdit" value="infoUser?.fullname" formControlName="fullname"></ion-input>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -44,7 +46,7 @@
       </ion-col>
       <ion-col>
         <p *ngIf="!isEdit">{{ infoUser?.mail }}</p>
-        <ion-input *ngIf="isEdit" value="arthur.geay@mail.com"></ion-input>
+        <ion-input *ngIf="isEdit" value="infoUser?.mail" formControlName="mail"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -55,34 +57,34 @@
         <p *ngIf="!isEdit">{{ infoUser?.timezone }}</p>
         <ion-item *ngIf="isEdit">
           <ion-label>Select a Timezone</ion-label>
-          <ion-select okText="Selectionner">
-            <ion-select-option value="UTC-12">UTC-12 Baker Island / Howland Island</ion-select-option>
-            <ion-select-option value="UTC-11">UTC-11 Niue / Samoa</ion-select-option>
-            <ion-select-option value="UTC-10">UTC-10 Hawai / Honolulu</ion-select-option>
-            <ion-select-option value="UTC-9">UTC-9 Alaska</ion-select-option>
-            <ion-select-option value="UTC-8">UTC-8 Californie / Vancouver</ion-select-option>
-            <ion-select-option value="UTC-7">UTC-7Arizona / Colorado / Edmonton</ion-select-option>
-            <ion-select-option value="UTC-6">UTC-6 Mexico / Chicago / Texas</ion-select-option>
-            <ion-select-option value="UTC-5">UTC-5 Montréal / Bogotá / Floride</ion-select-option>
-            <ion-select-option value="UTC-4">UTC-4 Guyane / Bermude / Groenland</ion-select-option>
-            <ion-select-option value="UTC-3">UTC-3 Buenos Aires / Rio de Janeiro</ion-select-option>
-            <ion-select-option value="UTC-2">UTC-2 Ile sandwich du Sud</ion-select-option>
-            <ion-select-option value="UTC-1">UTC-1 Cap Vert</ion-select-option>
-            <ion-select-option value="UTC+0">UTC+0 Islande / Lisbonne / Londres</ion-select-option>
-            <ion-select-option value="UTC+1">UTC+1 Paris / Cameroun / Oslo</ion-select-option>
-            <ion-select-option value="UTC+2">UTC+2 Athènes / Le Caire / Cape town</ion-select-option>
-            <ion-select-option value="UTC+3">UTC+3 Mayotte / Moscou / Bagdad</ion-select-option>
-            <ion-select-option value="UTC+4">UTC+4 Maurice / Saint-Denis / Dubaï</ion-select-option>
-            <ion-select-option value="UTC+5">UTC+5 Maldives / Pakistan</ion-select-option>
-            <ion-select-option value="UTC+6">UTC+6 Bangladesh / Kazakhstan</ion-select-option>
-            <ion-select-option value="UTC+7">UTC+7 Jakarta / Mongolie / Thailande</ion-select-option>
-            <ion-select-option value="UTC+8">UTC+8 Pékin / Singapour / Australie-Ouest</ion-select-option>
-            <ion-select-option value="UTC+9">UTC+9 Tokyo / Corée du Sud / Timor Oriental</ion-select-option>
-            <ion-select-option value="UTC+10">UTC+10 Brisbane / Papouasie-Nouvelle-Guinée</ion-select-option>
-            <ion-select-option value="UTC+11">UTC+11 Melbourne / Noumea</ion-select-option>
-            <ion-select-option value="UTC+12">UTC+12 Wallis et Futuna / Iles Marshall</ion-select-option>
-            <ion-select-option value="UTC+13">UTC+13 Fidji / Wellington</ion-select-option>
-            <ion-select-option value="UTC+14">UTC+14 Nouvelle-Zélande</ion-select-option>
+          <ion-select okText="Selectionner" formControlName="timezone">
+            <ion-select-option value="UTC-12 Baker Island / Howland Island" [selected]="infoUser?.timezone == 'UTC-12 Baker Island / Howland Island'">UTC-12 Baker Island / Howland Island</ion-select-option>
+            <ion-select-option value="UTC-11 Niue / Samoa" [selected]="infoUser?.timezone == 'UTC-11 Niue / Samoa'">UTC-11 Niue / Samoa</ion-select-option>
+            <ion-select-option value="UTC-10 Hawai / Honolulu" [selected]="infoUser?.timezone == 'UTC-10 Hawai / Honolulu'">UTC-10 Hawai / Honolulu</ion-select-option>
+            <ion-select-option value="UTC-9 Alaska" [selected]="infoUser?.timezone == 'UTC-9 Alaska'">UTC-9 Alaska</ion-select-option>
+            <ion-select-option value="UTC-8 Californie / Vancouver" [selected]="infoUser?.timezone == 'UTC-8 Californie / Vancouver'">UTC-8 Californie / Vancouver</ion-select-option>
+            <ion-select-option value="UTC-7 Arizona / Colorado / Edmonton" [selected]="infoUser?.timezone == 'UTC-7 Arizona / Colorado / Edmonton'">UTC-7 Arizona / Colorado / Edmonton</ion-select-option>
+            <ion-select-option value="UTC-6 Mexico / Chicago / Texas" [selected]="infoUser?.timezone == 'UTC-6 Mexico / Chicago / Texas'">UTC-6 Mexico / Chicago / Texas</ion-select-option>
+            <ion-select-option value="UTC-5 Montréal / Bogotá / Floride" [selected]="infoUser?.timezone == 'UTC-5 Montréal / Bogotá / Floride'">UTC-5 Montréal / Bogotá / Floride</ion-select-option>
+            <ion-select-option value="UTC-4 Guyane / Bermude / Groenland" [selected]="infoUser?.timezone == 'UTC-4 Guyane / Bermude / Groenland'">UTC-4 Guyane / Bermude / Groenland</ion-select-option>
+            <ion-select-option value="UTC-3 Buenos Aires / Rio de Janeiro" [selected]="infoUser?.timezone == 'UTC-3 Buenos Aires / Rio de Janeiro'">UTC-3 Buenos Aires / Rio de Janeiro</ion-select-option>
+            <ion-select-option value="UTC-2 Ile sandwich du Sud" [selected]="infoUser?.timezone == 'UTC-2 Ile sandwich du Sud'">UTC-2 Ile sandwich du Sud</ion-select-option>
+            <ion-select-option value="UTC-1 Cap Vert" [selected]="infoUser?.timezone == 'UTC-1 Cap Vert'">UTC-1 Cap Vert</ion-select-option>
+            <ion-select-option value="UTC+0 Islande / Lisbonne / Londres" [selected]="infoUser?.timezone == 'UTC+0 Islande / Lisbonne / Londres'">UTC+0 Islande / Lisbonne / Londres</ion-select-option>
+            <ion-select-option value="UTC+1 Paris / Cameroun / Oslo" [selected]="infoUser?.timezone == 'UTC+1 Paris / Cameroun / Oslo'">UTC+1 Paris / Cameroun / Oslo</ion-select-option>
+            <ion-select-option value="UTC+2 Athènes / Le Caire / Cape town" [selected]="infoUser?.timezone == 'UTC+2 Athènes / Le Caire / Cape town'">UTC+2 Athènes / Le Caire / Cape town</ion-select-option>
+            <ion-select-option value="UTC+3 Mayotte / Moscou / Bagdad" [selected]="infoUser?.timezone == 'UTC+3 Mayotte / Moscou / Bagdad'">UTC+3 Mayotte / Moscou / Bagdad</ion-select-option>
+            <ion-select-option value="UTC+4 Maurice / Saint-Denis / Dubaï" [selected]="infoUser?.timezone == 'UTC+4 Maurice / Saint-Denis / Dubaï'">UTC+4 Maurice / Saint-Denis / Dubaï</ion-select-option>
+            <ion-select-option value="UTC+5 Maldives / Pakistan" [selected]="infoUser?.timezone == 'UTC+5 Maldives / Pakistan'">UTC+5 Maldives / Pakistan</ion-select-option>
+            <ion-select-option value="UTC+6 Bangladesh / Kazakhstan" [selected]="infoUser?.timezone == 'UTC+6 Bangladesh / Kazakhstan'">UTC+6 Bangladesh / Kazakhstan</ion-select-option>
+            <ion-select-option value="UTC+7 Jakarta / Mongolie / Thailande" [selected]="infoUser?.timezone == 'UTC+7 Jakarta / Mongolie / Thailande'">UTC+7 Jakarta / Mongolie / Thailande</ion-select-option>
+            <ion-select-option value="UTC+8 Pékin / Singapour / Australie-Ouest" [selected]="infoUser?.timezone == 'UTC+8 Pékin / Singapour / Australie-Ouest'">UTC+8 Pékin / Singapour / Australie-Ouest</ion-select-option>
+            <ion-select-option value="UTC+9 Tokyo / Corée du Sud / Timor Oriental" [selected]="infoUser?.timezone == 'UTC+9 Tokyo / Corée du Sud / Timor Oriental'">UTC+9 Tokyo / Corée du Sud / Timor Oriental</ion-select-option>
+            <ion-select-option value="UTC+10 Brisbane / Papouasie-Nouvelle-Guinée" [selected]="infoUser?.timezone == 'UTC+10 Brisbane / Papouasie-Nouvelle-Guinée'">UTC+10 Brisbane / Papouasie-Nouvelle-Guinée</ion-select-option>
+            <ion-select-option value="UTC+11 Melbourne / Noumea" [selected]="infoUser?.timezone == 'UTC+11 Melbourne / Noumea'">UTC+11 Melbourne / Noumea</ion-select-option>
+            <ion-select-option value="UTC+12 Wallis et Futuna / Iles Marshall" [selected]="infoUser?.timezone == 'UTC+12 Wallis et Futuna / Iles Marshall'">UTC+12 Wallis et Futuna / Iles Marshall</ion-select-option>
+            <ion-select-option value="UTC+13 Fidji / Wellington" [selected]="infoUser?.timezone == 'UTC+13 Fidji / Wellington'">UTC+13 Fidji / Wellington</ion-select-option>
+            <ion-select-option value="UTC+14 Nouvelle-Zélande" [selected]="infoUser?.timezone == 'UTC+14 Nouvelle-Zélande'">UTC+14 Nouvelle-Zélande</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -124,4 +126,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  </form>
 </ion-content>

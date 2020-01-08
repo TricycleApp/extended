@@ -38,7 +38,6 @@ export class ProductPage implements OnInit {
   ionViewWillEnter() {
     const barcode = this.route.snapshot.params['barcode'];
     this.getProduct(barcode);
-    this.isOwner();
   }
 
   onShowSettings() {
@@ -125,6 +124,7 @@ export class ProductPage implements OnInit {
       this.product = data;
       this.setValueForm();
     })
+    .then(() => this.isOwner())
     .catch(error => console.log(error))
   }
 
@@ -172,6 +172,8 @@ export class ProductPage implements OnInit {
 
   /* Send data when form is submitted */
   onSubmitForm() {
+    if(this.productForm.valid) {
+      console.log("yo");
       const formValue = this.productForm.value;
 
       const product = new Product(formValue['name'], formValue['brand'], formValue['categories'], formValue['packaging'], formValue['description'], formValue['bin']);
@@ -179,6 +181,7 @@ export class ProductPage implements OnInit {
       this.productService.updateProduct(this.product.barcode, product, this.imgPath)
       .then(() => this.getProduct(this.product.barcode))
       .catch(error => console.log(error));
+    }
   }
 
   /* Get file when is upload by user */

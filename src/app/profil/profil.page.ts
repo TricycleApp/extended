@@ -1,27 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-profil',
   templateUrl: 'profil.page.html',
   styleUrls: ['profil.page.scss']
 })
-export class ProfilPage {
+export class ProfilPage implements OnInit {
 
   public isOpen = false;
   public isEdit = false;
 
   infoUser: any;
   roleUser: any;
+  profilForm: FormGroup;
 
   constructor(public alertController: AlertController, 
               public toastController: ToastController, 
               private authService: AuthService,
               private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    this.initForm();
+  }
 
   ionViewWillEnter() {
     this.getUserProfile();
@@ -37,7 +45,7 @@ export class ProfilPage {
   }
 
   onEdit() {
-    if (this.isEdit) {
+    if (this.isEdit && this.profilForm.valid) {
       this.isEdit = false;
       this.toastController.dismiss();
     } else {
@@ -47,6 +55,7 @@ export class ProfilPage {
     }
   }
 
+  /* Display alert when the user want sign out */
   alert() {
     this.alertController.create({
       header: 'Voulez vous vraiment vous déconnecter ?',
@@ -73,6 +82,7 @@ export class ProfilPage {
     });
   }
 
+  /* Display toast for edit information of user */
   saveEdit() {
     this.toastController.create({
       color: 'medium',
@@ -91,6 +101,7 @@ export class ProfilPage {
           handler: () => {
             this.onEdit();
             this.isOpen = false;
+            this.onSubmitForm();
           }
         },
 
@@ -100,10 +111,43 @@ export class ProfilPage {
     });
   }
 
+  /* Get information of user */
   getUserProfile() {
     this.userService.getInformation()
-    .then(data => this.infoUser = data)
+    .then(data => { 
+      this.infoUser = data;
+      this.setValueForm();
+    })
     .catch(error => console.log(error))
+  }
+
+  initForm() {
+    this.profilForm = this.formBuilder.group({
+      fullname: ['', Validators.required],
+      mail: ['', [Validators.required, Validators.email]],
+      timezone: ['', Validators.required]
+    });
+  }
+
+  /* Set default value of product for form value */
+  setValueForm() {
+    this.profilForm.setValue({
+        fullname: this.infoUser.fullname,
+        timezone: this.infoUser.timezone,
+        mail: this.infoUser.mail
+    });
+  }
+
+  /* Send data to api server */
+  onSubmitForm() {
+    if(this.profilForm.valid) {
+      const formValue = this.profilForm.value;
+      const user = { fullname: formValue['fullname'], mail: formValue['mail'], timezone: formValue['timezone']};
+
+      this.userService.editInformation(user)
+      .then(() => this.getUserProfile())
+      .catch(error => console.log(error))
+    }
   }
 
 

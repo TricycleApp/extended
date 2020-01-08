@@ -8,28 +8,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UserService {
 
   userInfo: any;
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
   
   constructor(private authService: AuthService, private httpClient: HttpClient) { 
     this.userInfo = this.authService.userInfo;
   }
 
   getStatsAndHistory() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>(`https://api.app-tricycle.com/api/user/stat-history/${this.userInfo.userId}`, httpOptions)
+      .get<any>(`https://api.app-tricycle.com/api/user/stat-history/${this.userInfo.userId}`, this.httpOptions)
       .subscribe(data => resolve(data),
       error => reject(error));
     });
   }
 
   getAllHistory() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>(`https://api.app-tricycle.com/api/user/history/${this.userInfo.userId}`, httpOptions)
+      .get<any>(`https://api.app-tricycle.com/api/user/history/${this.userInfo.userId}`, this.httpOptions)
       .subscribe(
         data => resolve(data),
         error => reject(error)
@@ -38,11 +37,21 @@ export class UserService {
   }
 
   getInformation() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>(`https://api.app-tricycle.com/api/user/${this.userInfo.userId}`, httpOptions)
+      .get<any>(`https://api.app-tricycle.com/api/user/${this.userInfo.userId}`, this.httpOptions)
+      .subscribe(
+        data => resolve(data),
+        error => reject(error)
+      )
+    });
+  }
+
+  editInformation(user) {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+      .put(`https://api.app-tricycle.com/api/user/${this.userInfo.userId}`, user, this.httpOptions)
       .subscribe(
         data => resolve(data),
         error => reject(error)
