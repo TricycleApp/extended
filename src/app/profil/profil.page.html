@@ -30,7 +30,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="fullname">
-        <h1 *ngIf="!isEdit">Arthur Geay</h1>
+        <h1 *ngIf="!isEdit">{{ infoUser?.fullname }}</h1>
         <ion-input *ngIf="isEdit" value="Arthur Geay"></ion-input>
       </ion-col>
     </ion-row>
@@ -43,7 +43,7 @@
         <h3>Mail:</h3>
       </ion-col>
       <ion-col>
-        <p *ngIf="!isEdit">arthur.geay@mail.com</p>
+        <p *ngIf="!isEdit">{{ infoUser?.mail }}</p>
         <ion-input *ngIf="isEdit" value="arthur.geay@mail.com"></ion-input>
       </ion-col>
     </ion-row>
@@ -52,7 +52,7 @@
         <h3>Timezone:</h3>
       </ion-col>
       <ion-col>
-        <p *ngIf="!isEdit">UTC + 1:00 - Paris</p>
+        <p *ngIf="!isEdit">{{ infoUser?.timezone }}</p>
         <ion-item *ngIf="isEdit">
           <ion-label>Select a Timezone</ion-label>
           <ion-select okText="Selectionner">
@@ -97,13 +97,13 @@
         <p>Nombre de produits scannées:</p>
       </ion-col>
       <ion-col>
-        <p class="spacy"><span id="nbProducts">43</span> produits</p>
+        <p class="spacy"><span id="nbProducts">{{ infoUser?.number_scan }}</span> produits</p>
       </ion-col>
     </ion-row>
     <ion-row class="stat">
       <ion-col>
         <p>
-          Inscrit depuis le <span class="signDate">29 Janvier 2019</span>
+          Inscrit depuis le <span class="signDate">{{ infoUser?.registration_date | date: 'd MMMM yyyy' }}</span>
         </p>
       </ion-col>
     </ion-row>
@@ -118,7 +118,7 @@
         <p>app.tricycle@gmail.com</p>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="roleUser?.includes('admin')">
       <ion-col class="center">
         <ion-button routerLink="/admin">Panel Admin</ion-button>
       </ion-col>

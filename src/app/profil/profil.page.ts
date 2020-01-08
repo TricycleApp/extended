@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profil',
@@ -10,13 +11,22 @@ import { Router } from '@angular/router';
 })
 export class ProfilPage {
 
+  public isOpen = false;
+  public isEdit = false;
+
+  infoUser: any;
+  roleUser: any;
+
   constructor(public alertController: AlertController, 
               public toastController: ToastController, 
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
-  public isOpen = false;
-  public isEdit = false;
+  ionViewWillEnter() {
+    this.getUserProfile();
+    this.roleUser = this.authService.userInfo.role;
+  }
 
   onShowSettings() {
     if (this.isOpen) {
@@ -88,6 +98,12 @@ export class ProfilPage {
     }).then(toast => {
       toast.present();
     });
+  }
+
+  getUserProfile() {
+    this.userService.getInformation()
+    .then(data => this.infoUser = data)
+    .catch(error => console.log(error))
   }
 
 

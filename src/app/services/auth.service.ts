@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isAuth = false;
-  userInfo: {};
+  userInfo: any;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -40,6 +40,7 @@ export class AuthService {
         .subscribe(
           (data) => {
             this.isAuth = false;
+            this.userInfo = null;
             resolve(data)
           },
           (error) => reject(error)
