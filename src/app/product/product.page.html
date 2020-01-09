@@ -144,7 +144,6 @@
               <img src="../../assets/image/piledispo.png" alt="dechetterie" />
               <figcaption>Déchetterie</figcaption>
             </figure>
-            <p *ngIf="!product?.bin.includes('bleu') || !product?.bin.includes('jaune')">{{ product?.bin}}</p>
           </div>
         </ion-col>
       </ion-row>
@@ -187,8 +186,6 @@
               <img src="../../assets/image/other.png" alt="Autre" />
               <figcaption>Autre</figcaption>
             </figure>
-            <p *ngIf="!product?.packaging.includes('Sachet plastique') || !product?.packaging.includes('carton')">
-              {{ product?.packaging}}</p>
           </div>
         </ion-col>
       </ion-row>

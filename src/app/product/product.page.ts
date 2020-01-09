@@ -173,7 +173,6 @@ export class ProductPage implements OnInit {
   /* Send data when form is submitted */
   onSubmitForm() {
     if(this.productForm.valid) {
-      console.log("yo");
       const formValue = this.productForm.value;
 
       const product = new Product(formValue['name'], formValue['brand'], formValue['categories'], formValue['packaging'], formValue['description'], formValue['bin']);

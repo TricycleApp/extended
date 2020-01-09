@@ -7,14 +7,15 @@ import { Product } from '../models/product.model';
 })
 export class ProductService {
 
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
+
   constructor(private httpClient: HttpClient) { }
 
   getProduct(barcode: string) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>(`https://api.app-tricycle.com/api/product/${barcode}`, httpOptions)
+      .get<any>(`https://api.app-tricycle.com/api/product/${barcode}`, this.httpOptions)
       .subscribe(data => resolve(data),
       (error => reject(error))
       );
@@ -39,15 +40,25 @@ export class ProductService {
   }
 
   deleteProduct(idProduct: string) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 
     return new Promise((resolve, reject) => {
       this.httpClient
-        .delete(`https://api.app-tricycle.com/api/product/delete/${idProduct}`, httpOptions)
+        .delete(`https://api.app-tricycle.com/api/product/delete/${idProduct}`, this.httpOptions)
         .subscribe(
           data => resolve(data),
           error => reject(error)
         )
+    });
+  }
+
+  getAll() {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+      .get('https://api.app-tricycle.com/api/product/all', this.httpOptions)
+      .subscribe(
+        data => resolve(data),
+        error => reject(error)
+      )
     });
   }
 }

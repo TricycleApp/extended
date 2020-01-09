@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,9 +9,18 @@ import { AlertController } from '@ionic/angular';
 })
 export class AdminPage implements OnInit {
 
-  constructor(public alertController: AlertController) { }
+  products: any;
+
+  constructor(public alertController: AlertController,
+              private productService: ProductService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.productService.getAll()
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
   }
 
   slide(){

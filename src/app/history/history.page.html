@@ -34,6 +34,9 @@
           <div>
             <img *ngIf="data.productInfo.bin.includes('bleu')" src="../../assets/image/bin.png" alt="poubelle" />
             <img *ngIf="data.productInfo.bin.includes('jaune')" src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
+            <img *ngIf="data.productInfo?.bin.includes('verre')" src="../../assets/image/verre.png" alt="benne à verre" />
+            <img *ngIf="data.productInfo?.bin.includes('electromenager')" src="../../assets/image/piledispo.png" alt="dispositif pour électroménager" />
+            <img *ngIf="data.productInfo?.bin.includes('dechetterie')" src="../../assets/image/piledispo.png" alt="dechetterie" />
           </div>
         </div>
         <pre *ngIf="data.owner">
