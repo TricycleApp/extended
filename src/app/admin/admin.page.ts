@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ProductService } from '../services/product.service';
+import { ProductPage } from '../product/product.page';
 
 @Component({
   selector: 'app-admin',
@@ -19,7 +20,7 @@ export class AdminPage implements OnInit {
 
   ionViewWillEnter() {
     this.productService.getAll()
-      .then(data => console.log(data))
+      .then(data => this.products = data)
       .catch(error => console.log(error))
   }
 
@@ -36,7 +37,7 @@ export class AdminPage implements OnInit {
   alert() {
     this.alertController.create({
     header: 'Voulez vous vraiment supprimer votre produit ?',
-    message: 'En appuyant sur ce bouton votre produit sera supprimer de manière définitive',
+    message: 'En appuyant sur ce bouton votre produit sera supprimé de manière définitive',
     buttons: ['Annuler', 'Suppprimer le produit']
   }).then(alert => {
      alert.present();

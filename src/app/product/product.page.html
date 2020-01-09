@@ -88,7 +88,7 @@
               </ion-select-option>
             </ion-select>
           </div>
-          <div class="settings" *ngIf="owner">
+          <div class="settings" *ngIf="owner || authService.userInfo.role.includes('admin')">
             <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
             <div class="settingsContainer" *ngIf="isOpen">
               <p class="ion-activatable" *ngIf="!isEdit" (click)="onEdit()">

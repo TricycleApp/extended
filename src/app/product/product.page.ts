@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { UserService } from '../services/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../models/product.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -28,7 +29,8 @@ export class ProductPage implements OnInit {
               private productService: ProductService, 
               private userService: UserService,
               private formBuilder: FormBuilder,
-              private router: Router) { 
+              private router: Router,
+              private authService: AuthService) { 
               }
 
   ngOnInit() {
@@ -64,7 +66,7 @@ export class ProductPage implements OnInit {
   alert() {
     this.alertController.create({
       header: 'Voulez vous vraiment supprimer votre produit ?',
-      message: 'En appuyant sur ce bouton votre produit sera supprimer de manière définitive',
+      message: 'En appuyant sur ce bouton votre produit sera supprimé de manière définitive',
       //buttons: ['Annuler', 'Suppprimer le produit']
       buttons: [
         {
