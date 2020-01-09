@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AdminGuardService } from '../services/admin-guard.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -19,6 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'history',
+        canActivate: [AuthGuardService],
         children: [
           {
             path: '',
@@ -29,6 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'profil',
+        canActivate: [AuthGuardService],
         children: [
           {
             path: '',
@@ -39,6 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'detail/:barcode',
+        canActivate: [AuthGuardService],
         children: [
           {
             path: '',
@@ -49,6 +54,7 @@ const routes: Routes = [
       },
       {
         path: 'admin',
+        canActivate: [AdminGuardService],
         children: [
           {
             path: '',

@@ -14,6 +14,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { AdminGuardService } from './services/admin-guard.service';
 
 
 registerLocaleData(localeFr);
@@ -29,7 +30,8 @@ registerLocaleData(localeFr);
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthService,
     AuthGuardService,
-    UserService
+    UserService,
+    AdminGuardService
   ],
   bootstrap: [AppComponent]
 })
