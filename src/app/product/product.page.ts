@@ -30,7 +30,17 @@ export class ProductPage implements OnInit {
               private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) { 
+              private authService: AuthService) 
+              { 
+                this.route.queryParams.subscribe(params => {
+                  if(this.router.getCurrentNavigation().extras.state) {
+                    if(this.router.getCurrentNavigation().extras.state.edit) {
+                      this.onEdit();
+                    } else if(this.router.getCurrentNavigation().extras.state.delete) {
+                     this.alert();
+                   }
+                  }
+                });
               }
 
   ngOnInit() {
@@ -78,8 +88,11 @@ export class ProductPage implements OnInit {
           handler: () => {
             this.productService.deleteProduct(this.product._id)
             .then(() => {
-              this.router.navigate([''])
-              .then(() => this.userService.getStatsAndHistory())
+              if(this.authService.userInfo.role.find(x => x == 'admin')) {
+                this.router.navigate(['admin'])
+              } else {
+                this.router.navigate([''])
+              }
             })
             .catch(error => console.log(error));
           }

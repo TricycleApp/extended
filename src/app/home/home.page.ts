@@ -8,7 +8,7 @@ import { UserService } from '../services/user.service';
 })
 export class HomePage implements OnInit{
 
-  userHistory: [{}];
+  userHistory = [];
 
   ngOnInit() {
   }

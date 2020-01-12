@@ -16,15 +16,15 @@
       <ion-card-title>Votre activité</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div *ngFor="let userData of userHistory">
-        <ion-card-subtitle>Total Produits scannées : <strong>{{ userData.number_scan }} </strong></ion-card-subtitle>
+      <div *ngIf="userHistory.length > 0">
+        <ion-card-subtitle>Total Produits scannées : <strong>{{ userHistory[0]?.number_scan }} </strong></ion-card-subtitle>
         <ion-card-subtitle>Aujourd'hui vous avez scannées
-          <strong>{{ userData.totalToday || 0 }}</strong> produits</ion-card-subtitle>
+          <strong>{{ userHistory[1]?.total_today || 0 }}</strong> produits</ion-card-subtitle>
       </div>
       <div *ngIf="userHistory === undefined || userHistory.length === 0">Vous n'avez pas encore scanné de produits !</div>
     </ion-card-content>
   </ion-card>
-  <ion-grid *ngFor="let userData of userHistory">
+  <ion-grid *ngIf="userHistory.length > 0">
     <ion-row>
       <ion-col>
         <h2>Dernier produit scanné</h2>
@@ -32,37 +32,37 @@
     </ion-row>
     <ion-row size="auto">
       <ion-col size="auto">
-        <h3>{{ userData.history[0].date_scan | date: 'd MMMM yyyy' }}</h3>
+        <h3>{{ userHistory[0]?.history[0].date_scan | date: 'd MMMM yyyy' }}</h3>
       </ion-col>
     </ion-row>
-    <ion-row class="last" routerLink="/product/{{ userData.productInfo[0].barcode }}">
+    <ion-row class="last" routerLink="/product/{{ userHistory[0]?.productInfo[0].barcode }}">
       <ion-col size="4" class="ion-no-padding">
         <div class="containProduct">
-          <img src="{{ userData.productInfo[0].img}}" alt="product image" />
+          <img src="{{ userHistory[0]?.productInfo[0].img}}" alt="product image" />
         </div>
       </ion-col>
       <ion-col class="infoProduct">
         <div>
-          <h2>{{ userData.productInfo[0].name}}</h2>
-          <b>{{ userData.productInfo[0].brand}}</b>
+          <h2>{{ userHistory[0]?.productInfo[0].name}}</h2>
+          <b>{{ userHistory[0]?.productInfo[0].brand}}</b>
         </div>
         <div class="category">
           <img src="../../assets/image/layers.png" />
-          <p>{{ userData.productInfo[0].categories }}</p>
+          <p>{{ userHistory[0]?.productInfo[0].categories }}</p>
         </div>
       </ion-col>
       <ion-col class="bin" size="auto">
         <div>
           <p>Poubelles</p>
           <div>
-            <img *ngIf="userData.productInfo[0].bin.includes('bleu')" src="../../assets/image/bin.png" alt="poubelle" />
-            <img *ngIf="userData.productInfo[0].bin.includes('jaune')" src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
-            <img *ngIf="userData.productInfo[0].bin.includes('verre')" src="../../assets/image/verre.png" alt="benne à verre" />
-            <img *ngIf="userData.productInfo[0].bin.includes('electromenager')" src="../../assets/image/piledispo.png" alt="dispositif pour électroménager" />
-            <img *ngIf="userData.productInfo[0].bin.includes('dechetterie')" src="../../assets/image/piledispo.png" alt="dechetterie" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('bleu')" src="../../assets/image/bin.png" alt="poubelle" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('jaune')" src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('verre')" src="../../assets/image/verre.png" alt="benne à verre" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('electromenager')" src="../../assets/image/piledispo.png" alt="dispositif pour électroménager" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('dechetterie')" src="../../assets/image/piledispo.png" alt="dechetterie" />
           </div>
         </div>
-        <pre *ngIf="userData.history[0].owner">
+        <pre *ngIf="userHistory[0]?.history[0].owner">
               <img src="../../assets/image/light-bulb.png">
             </pre>
       </ion-col>
