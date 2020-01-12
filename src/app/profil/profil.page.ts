@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
@@ -16,6 +16,7 @@ export class ProfilPage implements OnInit {
   public isOpen = false;
   public isEdit = false;
 
+  userId:  string; 
   infoUser: any;
   roleUser: any;
   profilForm: FormGroup;
@@ -24,15 +25,28 @@ export class ProfilPage implements OnInit {
               public toastController: ToastController, 
               private authService: AuthService,
               private router: Router,
+              private route: ActivatedRoute,
               private userService: UserService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder) { 
+
+                this.route.queryParams.subscribe(params => {
+                  if(this.router.getCurrentNavigation().extras.state) {
+                    if(this.router.getCurrentNavigation().extras.state.edit && this.router.getCurrentNavigation().extras.state.id) {
+                      this.userId = this.router.getCurrentNavigation().extras.state.id;
+                      this.onEdit();
+                    } 
+                  } else {
+                    this.userId = this.authService.userInfo.userId;
+                  }
+                });
+              }
 
   ngOnInit() {
     this.initForm();
   }
 
   ionViewWillEnter() {
-    this.getUserProfile();
+    this.getUserProfile(this.userId);
     this.roleUser = this.authService.userInfo.role;
   }
 
@@ -112,8 +126,8 @@ export class ProfilPage implements OnInit {
   }
 
   /* Get information of user */
-  getUserProfile() {
-    this.userService.getInformation()
+  getUserProfile(id?: string) {
+    this.userService.getInformation(id)
     .then(data => { 
       this.infoUser = data;
       this.setValueForm();
@@ -144,8 +158,8 @@ export class ProfilPage implements OnInit {
       const formValue = this.profilForm.value;
       const user = { fullname: formValue['fullname'], mail: formValue['mail'], timezone: formValue['timezone']};
 
-      this.userService.editInformation(user)
-      .then(() => this.getUserProfile())
+      this.userService.editInformation(this.userId, user)
+      .then(() => this.getUserProfile(this.userId))
       .catch(error => console.log(error))
     }
   }
