@@ -36,11 +36,13 @@ export class UserService {
     });
   }
 
-  getInformation() {
-
+  getInformation(userId?: string) {
+    if(!userId) {
+      userId = this.userInfo.userId;
+    }
     return new Promise((resolve, reject) => {
       this.httpClient
-      .get<any>(`https://api.app-tricycle.com/api/user/${this.userInfo.userId}`, this.httpOptions)
+      .get<any>(`https://api.app-tricycle.com/api/user/${userId}`, this.httpOptions)
       .subscribe(
         data => resolve(data),
         error => reject(error)
@@ -48,14 +50,36 @@ export class UserService {
     });
   }
 
-  editInformation(user) {
+  editInformation(id, user) {
     return new Promise((resolve, reject) => {
       this.httpClient
-      .put(`https://api.app-tricycle.com/api/user/${this.userInfo.userId}`, user, this.httpOptions)
+      .put(`https://api.app-tricycle.com/api/user/${id}`, user, this.httpOptions)
       .subscribe(
         data => resolve(data),
         error => reject(error)
       )
+    });
+  }
+
+  getAllUsers() {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get<any>('https://api.app-tricycle.com/api/user/all', this.httpOptions)
+        .subscribe(
+          data => resolve(data),
+          error => reject(error)
+        )
+    });
+  }
+
+  deleteUser(id: string) {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .delete<any>(`https://api.app-tricycle.com/api/user/delete/${id}`, this.httpOptions)
+        .subscribe(
+          data => resolve(data),
+          error => reject(error)
+        )
     });
   }
 
