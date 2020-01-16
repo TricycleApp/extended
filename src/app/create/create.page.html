@@ -13,97 +13,110 @@
       <h1>Ce produit n'existe pas ! <br />Crée-le !</h1>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <div>
-        <h2>Nom du produit</h2>
-        <ion-input></ion-input>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <div class="snap">
-        <h2>Image du Produit</h2>
-        <input type="file" id="profilPic" />
-        <label for="profilPic">
-          <img src="../../assets/image/plus.png" alt="add" />
-        </label>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <h2>Catégorie du produit</h2>
-      <ion-select placeholder=" Selectionnez une catégorie">
-        <ion-select-option value="sweet and chocolat">Bonbons & Chocolats</ion-select-option>
-        <ion-select-option value="sugar">Épicerie sucrée</ion-select-option>
-        <ion-select-option value="fruit and vegetables">Fruits & Légumes</ion-select-option>
-      </ion-select>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col>
-      <h2>Quelles emballages sont sur le produits</h2>
-      <p>Plusieurs choix sont disponibles</p>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="7">
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Sachet Plastique</p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Emballage en carton</p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Film Plastique</p>
-        </ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col size="5">
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Verre</p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Métal</p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox></ion-checkbox>
-        <ion-label>
-          <p>Autres</p>
-        </ion-label>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-item class="desc">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmitForm()" enctype="multipart/form-data">
+    <div class="error" *ngIf="error">Veuillez ajouter une image pour créer un produit</div>
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <ion-row>
+      <ion-col>
         <div>
-          <h2>Description du produit</h2>
-          <ion-textarea placeholder="Entrez la description d'un produit"></ion-textarea>
+          <h2>Nom du produit</h2>
+          <ion-input formControlName="name"></ion-input>
         </div>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="center">
-      <ion-button routerLink="">Enregistrer le produit</ion-button>
-    </ion-col>
-  </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>
+          <h2>Marque du produit</h2>
+          <ion-input formControlName="brand"></ion-input>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="snap">
+          <h2>Image du Produit</h2>
+          <input type="file" id="profilPic" accept="image/*" (change)="onFileChange($event)" formControlName="img"/>
+          <label for="profilPic">
+            <img src="../../assets/image/plus.png" alt="add" />
+          </label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2>Catégorie du produit</h2>
+        <ion-select placeholder=" Selectionnez une catégorie" formControlName="categories">
+          <ion-select-option value="Bio & Ecologie">Bio &
+            Ecologie</ion-select-option>
+          <ion-select-option value="Fruits & Légumes">Fruits
+            & Légumes</ion-select-option>
+          <ion-select-option value="Viandes et Poissons">
+            Viandes et Poissons</ion-select-option>
+          <ion-select-option value="Pains et Pâtisseries">Pains et Pâtisseries</ion-select-option>
+          <ion-select-option value="Crémerie">Crémerie
+          </ion-select-option>
+          <ion-select-option value="Fromage et Charcuterie">Fromage et Charcuterie</ion-select-option>
+          <ion-select-option value="Traiteur">Traiteur
+          </ion-select-option>
+          <ion-select-option value="Surgelés">Surgelés
+          </ion-select-option>
+          <ion-select-option value="Épicerie Salée">Épicerie
+            Salée</ion-select-option>
+          <ion-select-option value="Épicerie Sucrée">Épicerie
+            Sucrée</ion-select-option>
+          <ion-select-option value="Boissons sans alcool">Boissons sans alcool</ion-select-option>
+          <ion-select-option value="Alcools et Produits apéritifs">Alcools et Produits apéritifs
+          </ion-select-option>
+          <ion-select-option value="Animaux">Animaux
+          </ion-select-option>
+          <ion-select-option value="Parapharmacie">Parapharmacie
+          </ion-select-option>
+          <ion-select-option value="Produits du terroir">Produits du terroir</ion-select-option>
+          <ion-select-option value="Maison & Intérieur">Maison & Intérieur</ion-select-option>
+          <ion-select-option value="Cuisine et arts de la table">Cuisine et arts de la table
+          </ion-select-option>
+          <ion-select-option value="Electroménager">Electroménager</ion-select-option>
+          <ion-select-option value="Jardin & Extérieur">Jardin & Extérieur</ion-select-option>
+          <ion-select-option value="Bricolage & Auto">Bricolage & Auto</ion-select-option>
+          <ion-select-option value="Beauté, entretien et propreté">Beauté, entretien et propreté</ion-select-option>
+          <ion-select-option value="Bagagerie, sport et loisirs">Bagagerie, sport et loisirs
+          </ion-select-option>
+          <ion-select-option value="Téléphonie et objets connectés">Téléphonie et objets connectés
+          </ion-select-option>
+          <ion-select-option value="Image et Son">Image et Son</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <h2>Type d'emballage</h2>
+          <ion-select formControlName="packaging" placeholder="Sélectionnez le type d'emballage">
+            <ion-select-option value="Sachet plastique">Sachet Plastique</ion-select-option>
+            <ion-select-option value="Boîte en plastique">Boîte en Plastique</ion-select-option>
+            <ion-select-option value="Boîte en verre">Boîte en Verre</ion-select-option>
+            <ion-select-option value="Boîte en carton">Boîte en carton</ion-select-option>
+            <ion-select-option value="Autre">Autre</ion-select-option>
+          </ion-select>
+     </ion-col>
+    </ion-row>
+    
+
+    <ion-row>
+      <ion-col>
+        <ion-item class="desc">
+          <div>
+            <h2>Description du produit</h2>
+            <ion-textarea placeholder="Entrez la description d'un produit" formControlName="description"></ion-textarea>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="center">
+        <ion-button type="submit" [disabled]="productForm.invalid">Enregistrer le produit</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

@@ -61,4 +61,22 @@ export class ProductService {
       )
     });
   }
+
+  addProduct(product: Product, image: File) {
+    const httpOptions = { withCredentials: true };
+
+    const productData = new FormData();
+    productData.append('product', JSON.stringify(product));
+    productData.append('image', image);
+
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .post(`https://api.app-tricycle.com/api/product/add`, productData, httpOptions)
+        .subscribe(
+          data => resolve(data),
+          error => reject(error)
+        );
+    });
+  }
+
 }
