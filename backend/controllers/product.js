@@ -40,8 +40,11 @@ const addProductInHistory = (idUser, idProduct) => {
 
 /** Add a product  */
 exports.addProduct = (req, res) => {
+    const productObject = JSON.parse(req.body.product);
+
     const product = new Product({
-        ...req.body,
+        ...productObject,
+        img: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
         creation_date: new Date()
     });
     
