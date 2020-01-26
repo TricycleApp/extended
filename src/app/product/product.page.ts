@@ -30,7 +30,7 @@ export class ProductPage implements OnInit {
               private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) 
+              public authService: AuthService) 
               { 
                 this.route.queryParams.subscribe(params => {
                   if(this.router.getCurrentNavigation().extras.state) {
