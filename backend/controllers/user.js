@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 /** Add a product scanned in history of user */
 exports.addProductInHistory = (req, res) => {
-    const idProduct = mongoose.Types.ObjectId(req.body.product);
+    const idProduct = mongoose.Types.ObjectId(req.body._id);
     
     User.updateOne({ _id: req.params.id }, { 
         $push: {
