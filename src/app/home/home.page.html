@@ -24,6 +24,15 @@
       <div *ngIf="userHistory === undefined || userHistory.length === 0">Vous n'avez pas encore scanné de produits !</div>
     </ion-card-content>
   </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="center">
+        <ion-button>
+          <ion-icon slot="start" name="qr-scanner"></ion-icon> Scanner un produit
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid *ngIf="userHistory.length > 0">
     <ion-row>
       <ion-col>
