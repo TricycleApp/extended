@@ -121,14 +121,14 @@ b{
 .center{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  //margin-top: 20px;
 }
 
 ion-button{
   --background: var(--main-green);
   width: 100%;
   font-weight: bold;
-  font-size: .7rem;
+  font-size: .9rem;
   text-transform: none;
   --box-shadow: var(--button-shadow);
   --background-activated: var(--main-green);

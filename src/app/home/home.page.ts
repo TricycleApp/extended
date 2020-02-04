@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage implements OnInit{
   ngOnInit() {
   }
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private barcodeScanner: BarcodeScanner) {
   }
 
 
@@ -30,6 +31,12 @@ export class HomePage implements OnInit{
 
   ionViewWillEnter() {
     this.getData();
+  }
+
+  scan() {
+    this.barcodeScanner.scan()
+      .then(barcode => console.log(barcode))
+      .catch(error => console.log(error))
   }
 
 }
