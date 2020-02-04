@@ -43,23 +43,25 @@ export class HomePage implements OnInit{
 
   scan() {
     this.barcodeScanner.scan()
-      .then(barcode => { 
-        this.productService.getProduct(barcode.text)
-        .then((result: any) => { 
-          if(!result.status_verbose) {
-            this.userService.addProductInHistory(result)
-            .then(() => this.createToast('Produit scanné et ajouté à votre historique'))
-            .then(() => this.router.navigate([`product/${result.barcode}`]))
-            .catch(error => this.createAlert(error))
-          } else if (result.status_verbose == 'product found') {
-            // To DO ajouter le produit openfoodfact à la bdd
-            console.log('produit trouvé');
-          } else {
-            // Redirigier l'utilisateur vers la page de création d'un produit 
-            console.log('produit introuvable');
-          }
-        })
-        .catch(error => this.createAlert(error))
+      .then(barcode => {
+        if(!barcode.cancelled) {
+          this.productService.getProduct(barcode.text)
+          .then((result: any) => { 
+            if(!result.status_verbose) {
+              this.userService.addProductInHistory(result)
+              .then(() => this.createToast('Produit scanné et ajouté à votre historique'))
+              .then(() => this.router.navigate([`product/${result.barcode}`]))
+              .catch(error => this.createAlert(error))
+            } else if (result.status_verbose == 'product found') {
+              // To DO ajouter le produit openfoodfact à la bdd
+              console.log('produit trouvé');
+            } else {
+              // Redirigier l'utilisateur vers la page de création d'un produit 
+              console.log('produit introuvable');
+            }
+          })
+          .catch(error => this.createAlert(error))
+        } 
       })
       .catch(error => this.createAlert(error))
   }
