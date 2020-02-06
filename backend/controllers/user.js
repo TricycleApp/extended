@@ -2,6 +2,17 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
+/**
+ * @api {get} /add-product/history/:id Add a product scanned in history of user
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {String} message Success message
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "message": "Produit scanné ajouté à l'historique",
+ *    }
+ */
 /** Add a product scanned in history of user */
 exports.addProductInHistory = (req, res) => {
     const idProduct = mongoose.Types.ObjectId(req.body._id);
@@ -16,6 +27,38 @@ exports.addProductInHistory = (req, res) => {
     .catch(error => res.status(400).json({ error }));
 }
 
+/**
+ * @api {get} /stat-history/:id Return stats and last product scanned for user
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {Object} data Stats and history of user
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *      "_id": "64e464ee646e4",
+ *      "number_scan": 1,
+ *      "history": [{
+ *          "product": "efojef54fe55f45ef",
+ *          "date_scan": "2020-02-06",
+ *          "owner": true
+ *      }],
+ *      "productInfo": [{
+ *          "_id": "jejfljef464fe464effe",
+ *          "brand": ["Super U"],
+ *          "categories": ["Epicerie"],
+ *          "packaging": ["Boîte en verre"],
+ *          "bin": ["verre"],
+ *          "name": "Echalotte",
+ *          "description": "Echalotte en poudre",
+ *          "img": "http://google.com",
+ *          "barcode": "54346434664223",
+ *          "creation_date": "2020-02-06"
+ *      }]
+ *    },
+ *    {
+ *      "total_today": 1
+ *    }]
+ */
 /** Return stats and last product scanned for user */
 exports.getStatsAndLastProduct = (req, res) => {
     const userId = mongoose.Types.ObjectId(req.params.id);
@@ -49,7 +92,34 @@ exports.getStatsAndLastProduct = (req, res) => {
 
 
 
-
+/**
+ * @api {get} /history/:id Return history of user 
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {Object} data History of user
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *      "_id": "64e464ee646e4",
+ *      "history": [{
+ *          "product": "efojef54fe55f45ef",
+ *          "date_scan": "2020-02-06",
+ *          "owner": true
+ *      }],
+ *      "productInfo": [{
+ *          "_id": "jejfljef464fe464effe",
+ *          "brand": ["Super U"],
+ *          "categories": ["Epicerie"],
+ *          "packaging": ["Boîte en verre"],
+ *          "bin": ["verre"],
+ *          "name": "Echalotte",
+ *          "description": "Echalotte en poudre",
+ *          "img": "http://google.com",
+ *          "barcode": "54346434664223",
+ *          "creation_date": "2020-02-06"
+ *      }]
+ *    }]
+ */
 /** Return history of user */
 exports.getHistoryOfUser = (req, res) => {
     const userId = mongoose.Types.ObjectId(req.params.id);
@@ -63,6 +133,33 @@ exports.getHistoryOfUser = (req, res) => {
         .catch(error => res.status(404).json({error}));
 };
 
+/**
+ * @api {get} /all Return all users
+ * @apiGroup User
+ * @apiSuccess {Object} data All users
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *      "roles": ["admin"],
+ *      "history": [],
+ *      "fullname": "Arthur Geay",
+ *      "mail": "arthur.geay@ynov.com",
+ *      "password": "jlejlfjeljefealjal",
+ *      "timezone": "UTC +1",
+ *      "registration_date": "2019-01-01",
+ *      "number_scan": 0
+ *    },
+ *    {
+ *      "roles": ["admin"],
+ *      "history": [],
+ *      "fullname": "Arthur Geay",
+ *      "mail": "arthur.geay@ynov.com",
+ *      "password": "jlejlfjeljefealjal",
+ *      "timezone": "UTC +1",
+ *      "registration_date": "2019-01-01",
+ *      "number_scan": 0
+ *    }]
+ */
 /** Return all users */
 exports.getAllUsers = (req, res) => {
     User.find()
@@ -70,6 +167,24 @@ exports.getAllUsers = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+/**
+ * @api {get} /:id Return information of user
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {Object} data User information
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "roles": ["admin"],
+ *      "history": [],
+ *      "fullname": "Arthur Geay",
+ *      "mail": "arthur.geay@ynov.com",
+ *      "password": "jlejlfjeljefealjal",
+ *      "timezone": "UTC +1",
+ *      "registration_date": "2019-01-01",
+ *      "number_scan": 0
+ *    }
+ */
 /** Return information of user */
 exports.getInformationOfUser = (req, res) => {
     User.findOne({_id: req.params.id}, {fullname: 1, mail: 1, timezone: 1, number_scan: 1, registration_date: 1})
@@ -77,6 +192,17 @@ exports.getInformationOfUser = (req, res) => {
         .catch(error => res.status(404).json({error}));
 };
 
+/**
+ * @api {put} /:id Edit information of user
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {String} message Success message
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "message": "Informations du profil mis à jour"
+ *    }
+ */
 /** Edit informations of user */
 exports.editInformationOfUser = (req, res) => {
     User.updateOne({ _id: req.params.id}, {...req.body, _id: req.params.id })
@@ -84,6 +210,17 @@ exports.editInformationOfUser = (req, res) => {
         .catch(error => res.status(400).json({error}));
 };
 
+/**
+ * @api {delete} /:id Delete information of user
+ * @apiGroup User
+ * @apiParam {Number} id User id
+ * @apiSuccess {String} message Success message
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "message": "Utilisateur supprimé"
+ *    }
+ */
 /** Delete user  */
 exports.deleteUser = (req, res) => {
     User.deleteOne({ _id: req.params.id })
@@ -91,6 +228,20 @@ exports.deleteUser = (req, res) => {
         .catch((error) => res.status(400).json({error}));
 };
 
+/**
+ * @api {post} /login User login
+ * @apiGroup User
+ * @apiSuccess {Object} data User logged information
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "message": "Utilisateur authentifié",
+ *      "user": {
+ *          "userId": "2e43fef4e34e34e",
+ *          "role": ["admin"]
+ *      }
+ *    }
+ */
 exports.login = (req, res) => {
     User.findOne({ mail: req.body.mail })
         .then(user => {
@@ -111,7 +262,16 @@ exports.login = (req, res) => {
         .catch(error => res.status(500).json({error}));
 };
 
-
+/**
+ * @api {get} /logout User logout
+ * @apiGroup User
+ * @apiSuccess {Object} message User is logged out
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "message": "Utilisateur déconnecté",
+ *    }
+ */
 exports.logout = (req, res) => {
     if(!req.session.user) {
         return res.status(400).json({ error: 'Déconnexion impossible'});

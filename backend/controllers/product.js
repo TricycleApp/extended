@@ -4,7 +4,38 @@ const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const fs = require('fs');
 
-
+/**
+ * @api {get} /all Return all products
+ * @apiGroup Product
+ * @apiSuccess {Object} data All products
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *      "_id": "jejfljef464fe464effe",
+ *      "brand": ["Super U"],
+ *      "categories": ["Epicerie"],
+ *      "packaging": ["Boîte en verre"],
+ *      "bin": ["verre"],
+ *      "name": "Echalotte",
+ *      "description": "Echalotte en poudre",
+ *      "img": "http://google.com",
+ *      "barcode": "54346434664223",
+ *      "creation_date": "2020-02-06"
+ *      },
+ *      {
+ *          "_id": "jejfljef464fe464effe",
+ *          "brand": ["Super U"],
+ *          "categories": ["Epicerie"],
+ *          "packaging": ["Boîte en verre"],
+ *          "bin": ["verre"],
+ *          "name": "Echalotte",
+ *          "description": "Echalotte en poudre",
+ *          "img": "http://google.com",
+ *          "barcode": "54346434664223",
+ *          "creation_date": "2020-02-06"
+ *      }
+ *    ]
+ */
 /** Return all products */
 exports.getAllProducts = (req, res) => {
     Product.find()
@@ -12,6 +43,27 @@ exports.getAllProducts = (req, res) => {
     .catch(error => res.status(400).json({error}));
 };
 
+
+/**
+ * @api {get} /:barcode Return a product
+ * @apiGroup Product
+ * @apiParam {String} barcode Product barcode
+ * @apiSuccess {Object} data One product
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *        "_id": "jejfljef464fe464effe",
+ *        "brand": ["Super U"],
+ *        "categories": ["Epicerie"],
+ *        "packaging": ["Boîte en verre"],
+ *        "bin": ["verre"],
+ *        "name": "Echalotte",
+ *        "description": "Echalotte en poudre",
+ *        "img": "http://google.com",
+ *        "barcode": "54346434664223",
+ *        "creation_date": "2020-02-06"
+ *    }
+ */
 /** Return a product */
 exports.getProduct = (req, res) => {
     Product.findOne({ barcode: req.params.barcode })
@@ -38,6 +90,16 @@ const addProductInHistory = (idUser, idProduct) => {
     .catch(error => console.log(error) );
 }
 
+/**
+ * @api {post} /add Add a product
+ * @apiGroup Product
+ * @apiSuccess {String} message Message success
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       "message": "Produit enregistré et ajouté dans l'historique"
+ *    }
+ */
 /** Add a product  */
 exports.addProduct = (req, res) => {
     const productObject = req.body.product ? JSON.parse(req.body.product) : req.body;
@@ -59,6 +121,17 @@ exports.addProduct = (req, res) => {
         .catch(error => res.status(400).json({error}));
 };
 
+/**
+ * @api {put} /edit/:barcode Edit a product
+ * @apiGroup Product
+ * @apiParam {String} barcode Product barcode
+ * @apiSuccess {String} message Message success
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       "message": "Produit mis à jour"
+ *    }
+ */
 /** Edit a product */
 exports.editProduct = (req, res) => {
     const productObject = req.file ?
@@ -73,6 +146,18 @@ exports.editProduct = (req, res) => {
          .catch(error => res.status(400).json({error}));
  };
 
+
+ /**
+ * @api {delete} /delete/:id Delete a product
+ * @apiGroup Product
+ * @apiParam {String} id Product id
+ * @apiSuccess {String} message Message success
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *       "message": "Produit supprimé"
+ *    }
+ */
 /** Delete a product */
 exports.deleteProduct = (req, res) => {
     const idProduct = mongoose.Types.ObjectId(req.params.id);
