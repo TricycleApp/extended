@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { AdminGuardService } from './services/admin-guard.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ScannerService } from './services/scanner.service';
 
 
 registerLocaleData(localeFr);
@@ -33,6 +34,7 @@ registerLocaleData(localeFr);
     AuthGuardService,
     UserService,
     AdminGuardService,
+    ScannerService,
     BarcodeScanner
   ],
   bootstrap: [AppComponent]
