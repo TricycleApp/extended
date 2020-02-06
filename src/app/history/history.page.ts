@@ -25,7 +25,6 @@ export class HistoryPage {
         }
 
         this.productsHistory = data[0].history;
-        console.log(this.productsHistory);
         this.productsHistory.sort((a : any, b: any) => { 
             a = new Date(a.date_scan);
             b = new Date(b.date_scan);

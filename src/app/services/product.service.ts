@@ -62,12 +62,19 @@ export class ProductService {
     });
   }
 
-  addProduct(product: Product, image: File) {
-    const httpOptions = { withCredentials: true };
+  addProduct(product: Product, image?: File) {
+    let httpOptions = null;
+    let productData = null;
 
-    const productData = new FormData();
-    productData.append('product', JSON.stringify(product));
-    productData.append('image', image);
+    if(image) {
+      httpOptions = { withCredentials: true };
+      productData = new FormData();
+      productData.append('product', JSON.stringify(product));
+      productData.append('image', image);
+    } else {
+      httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
+      productData = product;
+    }
 
     return new Promise((resolve, reject) => {
       this.httpClient
