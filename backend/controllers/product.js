@@ -40,13 +40,13 @@ const addProductInHistory = (idUser, idProduct) => {
 
 /** Add a product  */
 exports.addProduct = (req, res) => {
-    const productObject = JSON.parse(req.body.product);
+    const productObject = req.body.product ? JSON.parse(req.body.product) : req.body;
 
-    const product = new Product({
+    const product = new Product(req.file ? {
         ...productObject,
         img: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
         creation_date: new Date()
-    });
+    } : { ...productObject, creation_date: new Date() });
     
     product.save()
         .then((product) => {
