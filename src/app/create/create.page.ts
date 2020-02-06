@@ -15,10 +15,15 @@ export class CreatePage implements OnInit {
   imgPath: File = null;
   error: boolean = false;
   errorMessage: string = null;
+  barcode: string;
 
   constructor(private formBuilder: FormBuilder,
               private productService: ProductService,
-              private router: Router) { }
+              private router: Router) { 
+                if(this.router.getCurrentNavigation().extras.state.barcode) {
+                  this.barcode = this.router.getCurrentNavigation().extras.state.barcode;
+                }
+              }
 
   ngOnInit() {
     this.initForm();
@@ -66,8 +71,8 @@ export class CreatePage implements OnInit {
           bin.push('Autre');
           break;
       }
-      const barcode = 'testeeee';
-      const product = new Product(formValue.name, formValue.brand, formValue.categories, formValue.packaging, formValue.description, bin, formValue.img, barcode);
+
+      const product = new Product(formValue.name, formValue.brand, formValue.categories, formValue.packaging, formValue.description, bin, formValue.img, this.barcode);
 
       this.productService.addProduct(product, this.imgPath)
         .then(() => { 
