@@ -17,11 +17,13 @@
     </ion-card-header>
     <ion-card-content>
       <div *ngIf="userHistory.length > 0">
-        <ion-card-subtitle>Total Produits scannées : <strong>{{ userHistory[0]?.number_scan }} </strong></ion-card-subtitle>
+        <ion-card-subtitle>Total Produits scannées : <strong>{{ userHistory[0]?.number_scan }} </strong>
+        </ion-card-subtitle>
         <ion-card-subtitle>Aujourd'hui vous avez scannées
           <strong>{{ userHistory[1]?.total_today || 0 }}</strong> produits</ion-card-subtitle>
       </div>
-      <div *ngIf="userHistory === undefined || userHistory.length === 0">Vous n'avez pas encore scanné de produits !</div>
+      <div *ngIf="userHistory === undefined || userHistory.length === 0">Vous n'avez pas encore scanné de produits !
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-grid>
@@ -64,11 +66,16 @@
         <div>
           <p>Poubelles</p>
           <div>
-            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('bleu')" src="../../assets/image/bin.png" alt="poubelle" />
-            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('jaune')" src="../../assets/image/recycling.png" alt="poubelle de recyclage" />
-            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('verre')" src="../../assets/image/verre.png" alt="benne à verre" />
-            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('electromenager')" src="../../assets/image/piledispo.png" alt="dispositif pour électroménager" />
-            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('dechetterie')" src="../../assets/image/piledispo.png" alt="dechetterie" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('bleu')" src="../../assets/image/bin.png"
+              alt="poubelle" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('jaune')" src="../../assets/image/recycling.png"
+              alt="poubelle de recyclage" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('verre')" src="../../assets/image/verre.png"
+              alt="benne à verre" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('electromenager')"
+              src="../../assets/image/piledispo.png" alt="dispositif pour électroménager" />
+            <img *ngIf="userHistory[0]?.productInfo[0].bin.includes('dechetterie')"
+              src="../../assets/image/piledispo.png" alt="dechetterie" />
           </div>
         </div>
         <pre *ngIf="userHistory[0]?.history[0].owner">
@@ -77,13 +84,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list lines="none">
-    <ion-list-header>
-      <ion-label>Resources</ion-label>
-    </ion-list-header>
-    <ion-item routerLink="/create">
-      <ion-icon slot="start" color="medium" name="add"></ion-icon>
-      <ion-label>Création d'un produit</ion-label>
-    </ion-item>
-  </ion-list>
 </ion-content>
