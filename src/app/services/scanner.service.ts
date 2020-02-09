@@ -15,7 +15,11 @@ export class ScannerService {
               private toastCtrl: ToastController,
               private userService: UserService,
               private router: Router) { }
-
+  
+  /**
+   * Scan product
+   * @param barcode 
+   */          
   scan(barcode) {
     this.productService.getProduct(barcode.text)
           .then((result: any) => { 
@@ -32,6 +36,11 @@ export class ScannerService {
           .catch(error => this.createAlert(error))
   }
 
+  /**
+   * Resolve the bin and packaging for scan product
+   * @param packaging
+   * @returns { Array } First value : packaging - Second value : bin
+   */
   determineBinAndPackaging(packaging) {
     let result = [];
     if(packaging.includes('sachet-plastique') || (packaging.includes('sachet') && packaging.includes('plastique') || (packaging.find(x => x.match(/plastique/i) && packaging.find(x => x.match(/sachet/i)) )))) {
@@ -56,6 +65,10 @@ export class ScannerService {
     return result;
   }
 
+  /**
+   * Display alert message
+   * @param message 
+   */
   async createAlert(message) {
     let modal = await this.alertCtrl.create({
       header: 'Erreur',
@@ -66,6 +79,10 @@ export class ScannerService {
     await modal.present();
   }
 
+  /**
+   * Display toast
+   * @param message 
+   */
   async createToast(message) {
     let toast = await this.toastCtrl.create({
       message: message,
@@ -76,6 +93,10 @@ export class ScannerService {
     await toast.present();
   }
 
+  /**
+   * Add existing product from our database in history of user
+   * @param result 
+   */
   addProductFromDbInHistory(result) {
     this.userService.addProductInHistory(result)
       .then(() => this.createToast('Produit ajouté à votre historique'))
@@ -83,6 +104,10 @@ export class ScannerService {
       .catch(error => this.createAlert(error))
   }
 
+  /**
+   * Add product existing in database Open Food Facts in our database and in history of user
+   * @param result 
+   */
   addProductFromOfInHistory(result) {
     const binAndPackaging = this.determineBinAndPackaging(result.product.packaging_tags);
     const product = new Product(result.product.product_name, result.product.brands.split(',')[0], result.product.categories.split(',')[0], binAndPackaging[0], result.product.generic_name + ' ', binAndPackaging[1], result.product.image_url, result.product.code)
@@ -93,6 +118,10 @@ export class ScannerService {
       .catch(error => this.createAlert(error))
   }
 
+  /**
+   * Add new product in our database
+   * @param barcode 
+   */
   addNewProductInDb(barcode) {
     const navigationExtras = {
       state: {

@@ -14,6 +14,10 @@ export class UserService {
     this.userInfo = this.authService.userInfo;
   }
 
+  /**
+   * Get statistics and history of user logged
+   * @returns Promise
+   */
   getStatsAndHistory() {
 
     return new Promise((resolve, reject) => {
@@ -24,6 +28,10 @@ export class UserService {
     });
   }
 
+  /**
+   * Get all products scanned by user
+   * @returns Promise
+   */
   getAllHistory() {
 
     return new Promise((resolve, reject) => {
@@ -36,6 +44,11 @@ export class UserService {
     });
   }
 
+  /**
+   * Get informations of user logged
+   * @param userId
+   * @returns Promise
+   */
   getInformation(userId?: string) {
     if(!userId) {
       userId = this.userInfo.userId;
@@ -50,6 +63,12 @@ export class UserService {
     });
   }
 
+  /**
+   * Update informations of user logged
+   * @param id 
+   * @param user
+   * @returns Promise
+   */
   editInformation(id, user) {
     return new Promise((resolve, reject) => {
       this.httpClient
@@ -61,6 +80,10 @@ export class UserService {
     });
   }
 
+  /**
+   * Get all users
+   * @returns Promise
+   */
   getAllUsers() {
     return new Promise((resolve, reject) => {
       this.httpClient
@@ -72,6 +95,11 @@ export class UserService {
     });
   }
 
+  /**
+   * Delete user
+   * @param id
+   * @returns Promise
+   */
   deleteUser(id: string) {
     return new Promise((resolve, reject) => {
       this.httpClient
@@ -83,6 +111,11 @@ export class UserService {
     });
   }
 
+  /**
+   * Add existing product in our database in history of user
+   * @param product
+   * @returns Promise
+   */
   addProductInHistory(product) {
     const userId = this.userInfo.userId;
     return new Promise((resolve, reject) => {

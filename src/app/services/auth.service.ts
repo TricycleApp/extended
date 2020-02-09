@@ -11,7 +11,13 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {
   }
-
+  
+  /**
+   * Sign in for user
+   * @param email 
+   * @param password 
+   * @returns Promise 
+   */
   signInUser(email: string, password: string) {
     const body = { mail: email, password: password };
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
@@ -30,7 +36,10 @@ export class AuthService {
     });
   }
 
-
+  /**
+   * Disconnect user
+   * @returns Promise
+   */
   signOut() {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
 

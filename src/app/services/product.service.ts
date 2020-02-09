@@ -11,6 +11,11 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Get product
+   * @param barcode -  Barcode of product
+   * @returns Promise with product data
+   */
   getProduct(barcode: string) {
 
     return new Promise((resolve, reject) => {
@@ -22,6 +27,13 @@ export class ProductService {
     });
   }
 
+  /**
+   * Update information of product
+   * @param barcode 
+   * @param product 
+   * @param image
+   * @returns Promise 
+   */
   updateProduct(barcode: string, product: Product, image?: File) {
     const httpOptions = { withCredentials: true };
     
@@ -39,6 +51,11 @@ export class ProductService {
     }); 
   }
 
+  /**
+   * Delete product
+   * @param idProduct
+   * @returns Promise
+   */
   deleteProduct(idProduct: string) {
 
     return new Promise((resolve, reject) => {
@@ -51,6 +68,10 @@ export class ProductService {
     });
   }
 
+  /**
+   * Get all products
+   * @returns Promise
+   */
   getAll() {
     return new Promise((resolve, reject) => {
       this.httpClient
@@ -62,6 +83,12 @@ export class ProductService {
     });
   }
 
+  /**
+   * Add new product
+   * @param product 
+   * @param image 
+   * @returns Promise
+   */
   addProduct(product: Product, image?: File) {
     let httpOptions = null;
     let productData = null;
