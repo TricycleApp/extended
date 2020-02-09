@@ -52,6 +52,9 @@ export class ProductPage implements OnInit {
     this.getProduct(barcode);
   }
 
+  /**
+   * Toggle settings
+   */
   onShowSettings() {
     if (this.isOpen) {
       this.isOpen = false;
@@ -60,7 +63,9 @@ export class ProductPage implements OnInit {
     }
   }
 
-
+  /**
+   * Edit actions
+   */
   onEdit() {
     if (this.isEdit && this.productForm.valid) {
       this.isEdit = false;

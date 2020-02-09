@@ -29,6 +29,9 @@ export class CreatePage implements OnInit {
     this.initForm();
   }
 
+  /**
+   * Initialize form
+   */
   initForm() {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -48,6 +51,9 @@ export class CreatePage implements OnInit {
     }
   }
 
+  /**
+   * Send data to API for create product
+   */
   onSubmitForm() {
     if(!this.imgPath) {
       this.error = true;

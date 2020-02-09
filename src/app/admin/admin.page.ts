@@ -38,6 +38,9 @@ export class AdminPage implements OnInit {
     slides.slideTo(0);
   }
 
+  /**
+   * Display alert
+   */
   alert() {
     this.alertController.create({
       header: 'Voulez vous vraiment supprimer votre produit ?',
@@ -97,6 +100,10 @@ export class AdminPage implements OnInit {
     });
   }
 
+  /**
+   * Display alert when delete user
+   * @param id 
+   */
   onDeleteUser(id: string) {
     this.alertDelete(id);
   }

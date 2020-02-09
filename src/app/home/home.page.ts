@@ -24,7 +24,10 @@ export class HomePage implements OnInit{
               private scannerService: ScannerService) {
   }
 
-
+  /**
+   * Get data of user
+   * @param event - Reloading page event
+   */
   getData(event?: any) {
     this.userService.getStatsAndHistory()
     .then((data: [{}]) => {
@@ -40,6 +43,9 @@ export class HomePage implements OnInit{
     this.getData();
   }
 
+  /**
+   * Scan a product
+   */
   scan() {
     this.barcodeScanner.scan()
       .then(barcode => {

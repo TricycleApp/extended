@@ -50,6 +50,9 @@ export class ProfilPage implements OnInit {
     this.roleUser = this.authService.userInfo.role;
   }
 
+  /**
+   * Toggle settings
+   */
   onShowSettings() {
     if (this.isOpen) {
       this.isOpen = false;
@@ -58,6 +61,9 @@ export class ProfilPage implements OnInit {
     }
   }
 
+  /**
+   * Edit actions
+   */
   onEdit() {
     if (this.isEdit && this.profilForm.valid) {
       this.isEdit = false;
@@ -135,6 +141,9 @@ export class ProfilPage implements OnInit {
     .catch(error => console.log(error))
   }
 
+  /**
+   * Initialize form
+   */
   initForm() {
     this.profilForm = this.formBuilder.group({
       fullname: ['', Validators.required],
