@@ -136,7 +136,6 @@ export class ProductPage implements OnInit {
   getProduct(barcode: string) {
     this.productService.getProduct(barcode)
     .then(data => {
-      console.log(data);
       this.product = data;
       this.setValueForm();
     })
