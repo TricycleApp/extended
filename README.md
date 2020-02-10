@@ -33,18 +33,17 @@ Pour la base de données nous avons utilisés:
  
 ## Architecture Logicielle
 
-- **src **
-  - **app**
-		  - admin
-		  -  create
-		  -  history
-		  -  home
-		  -  models
-		  -  product
-		  -  profil
-		  -  services
-		  -  signin
-		  -  tabs
+-  **src** > **app**
+	  - admin
+	  -  create
+	  -  history
+	  -  home
+	  -  models
+	  -  product
+	  -  profil
+	  -  services
+	  -  signin
+	  -  tabs
 	
 Le dossier **admin**  contient les fichiers de la page d'administration d'utilisateur et de produit
 Le dossier **create** contient les fichiers de la page de création d'article
@@ -60,6 +59,7 @@ Le dossier **tabs**  contient le component du menu de navigation
 
 ## Installation
 
-L'application est disponible sous forme de fichier  **.apk** qui peut être installé sur un téléphone Android
-Une version **Desktop** est disponible sur Windows avec un **.exe**
+L'application est disponible sous forme de fichier  **.apk** qui peut être installé sur un téléphone Android, elle est disponible dans le dossier ***APK*** .
+Une version **Desktop** est disponible sur Windows et MacOS avec un **.exe** et **.dmg** dans le dossier ***builds*** .
 
+Le programme Arduino permet d'utiliser le scanner, l'écran LCD et le module Bluetooth, il est téléchargeable sous le nom de *finale_tricycle.ino*
