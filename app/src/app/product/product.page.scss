@@ -1,0 +1,227 @@
+.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+* {
+  outline: none;
+}
+
+.settings {
+  margin-top: 20px;
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  display: flex;
+  justify-content: flex-end;
+  ion-icon {
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+  }
+  .settingsContainer {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    text-align: center;
+    padding: 1px 0;
+    border-radius: 10px;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    z-index: 99;
+    display: block;
+  }
+  p {
+    padding: 1em 1.5em;
+    margin: 0;
+    color: var(--gray);
+    border-radius: 10px;
+  }
+}
+
+
+
+ion-row:first-of-type {
+  margin-top: 30px;
+}
+ion-grid > ion-row:first-of-type ion-col {
+  min-height: 90px;
+  max-height: 90px;
+}
+ion-row {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h3 {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-bottom: 5px;
+}
+
+.containProduct {
+  width: 90px;
+  height: 90px;
+  box-shadow: var(--holow-shadow);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--white);
+  img {
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+  }
+}
+
+.infoProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 0;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+b {
+  margin-top: 0;
+  opacity: 0.5;
+  font-size: 0.6rem;
+
+}
+
+
+#name{
+  background: var(--white);
+  --padding-top: 2px;
+  --padding-bottom: 2px;
+  margin-bottom: 1em;
+}
+.snap{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+#profilPic{
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+
+  + label {
+      height: 80px;
+      width: 80px;
+      background: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+  } 
+} 
+
+
+
+
+#brand {
+  font-size: .6rem;
+  --padding-start: 5px;  
+  --padding-top: 5px;
+  --padding-bottom: 2px;
+  --padding-top: 2px;
+  background: var(--white);
+  border-radius: 5px;
+  width: 50px;
+}
+
+
+.category {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img{
+    width: 12px;
+    height: 12px;
+  }
+  p {
+    font-size: 0.6rem;
+    display: inline-block;
+    padding-left: 5px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  ion-select{
+    width: 150px;
+    height: 20px;
+    display: flex;
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-left: 10px;
+    color: var(--black);
+  }
+}
+
+
+
+
+// Poubelles
+#bin,
+#package {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    font-size: 1.2rem;
+    margin-top: 3px;
+    font-weight: bold;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      img {
+        max-width: 50px;
+        max-height: 50px;
+        margin: 0 30px 0 30px;
+      }
+      figcaption {
+        font-size: 0.7rem;
+        margin-top: 10px;
+        max-width: 60px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.error{
+  background: var(--ion-color-danger);
+  font-size: .9rem;
+  text-align: center;
+  color: var(--ion-color-danger-contrast);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+
+
+ion-textarea{
+  --background: var(--white);
+  border-radius: 5px;
+  min-height: 100px;
+  margin-bottom: 80px;
+}

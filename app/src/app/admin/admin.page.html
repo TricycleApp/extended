@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <nav>
+    <button (click)="slidePrev(theSlides)">Products</button>
+    <button (click)="slideNext(theSlides)">Users</button>
+    <div id="swap"></div>
+  </nav>
+  <ion-slides (ionSlideWillChange)="slide()" #theSlides>
+
+    <ion-slide class="product">
+      <ion-grid>
+        <ion-row *ngFor="let product of products" routerLink="/product/{{ product.barcode }}">
+          <ion-col size="3">
+            <div class="containProduct">
+              <img src="{{product.img}}" alt="product image" />
+            </div>
+          </ion-col>
+          <ion-col class="infoProduct">
+            <h2>{{ product.name }}</h2>
+            <b>{{ product.brand }}</b>
+            <div class="category">
+              <img src="../../assets/image/layers.png" />
+              <p>{{ product.categories }}</p>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="crud">
+            <button class="ion-activatable" (click)="onEditProduct(product.barcode)">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit product
+            </button>
+            <button class="ion-activatable" (click)="onDeleteProduct(product.barcode, product._id)">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete product
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+
+    <ion-slide class="user">
+      <ion-grid>
+        <ion-row *ngFor="let user of users">
+          <ion-col size="3">
+            <div class="profil">
+              <img src="../../assets/image/profil.jpg" alt="profil image" />
+            </div>
+          </ion-col>
+          <ion-col class="info">
+            <h2>{{ user.fullname }}</h2>
+            <b>{{ user.mail }}</b>
+          </ion-col>
+          <ion-col size="3" class="crud">
+            <button class="ion-activatable" (click)="onEditUser(user._id)">
+              <ion-ripple-effect></ion-ripple-effect>
+              Edit user
+            </button>
+            <button class="ion-activatable" (click)="onDeleteUser(user._id)">
+              <ion-ripple-effect></ion-ripple-effect>
+              Delete user
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

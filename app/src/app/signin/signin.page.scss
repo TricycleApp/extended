@@ -1,0 +1,77 @@
+ion-content{
+    --ion-background-color: var(--white); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ion-content > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    padding: 0 20% 0 20%;
+}
+
+h1{
+    color: var(--main-green);
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+form{
+    justify-content: space-around;
+    height: 60vh;
+}
+
+form section{
+    width: 70%;
+}
+
+h2{
+    font-size: .8rem;
+    font-weight: bold;
+    color: var(--light-gray);
+}
+
+ion-input{
+    background: var(--white);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: var(--input-shadow);
+    --padding-start: 10px;
+    --padding-end: 10px;
+    font-size: .9rem;
+}
+
+
+ion-button{
+    --background: var(--main-green);
+    width: 35%;
+    font-weight: bold;
+    font-size: .7rem;
+    text-transform: none;
+    --box-shadow: var(--button-shadow);
+    --background-activated: var(--main-green);
+    --background-focused: var(--main-green);
+    --background-hover: var(--main-green);
+}
+
+
+.error{
+    background: var(--ion-color-danger);
+    font-size: .9rem;
+    text-align: center;
+    color: var(--ion-color-danger-contrast);
+    padding: 10px 20px;
+    border-radius: 5px;
+}

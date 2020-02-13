@@ -1,0 +1,7 @@
+{
+  "name": "radeau",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

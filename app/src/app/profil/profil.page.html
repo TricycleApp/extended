@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Profil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Profil, options -->
+  <form [formGroup]="profilForm" (ngSubmit)="onSubmitForm()">
+    <div class="error" *ngIf="isEdit && profilForm.invalid">Veuillez remplir tous les champs</div>
+  <ion-grid id="mainProfil">
+    <ion-row class="justify-content-between">
+      <ion-col size="3"> </ion-col>
+      <ion-col size="6" class="center">
+        <img src="../../assets/image/profil.jpg" id="profil" (click)="saveEdit()" />
+      </ion-col>
+      <ion-col size="3">
+        <div class="settings">
+          <ion-icon name="md-more" (click)="onShowSettings()"></ion-icon>
+          <div class="settingsContainer" *ngIf="isOpen">
+            <p class="ion-activatable" *ngIf="!isEdit" (click)="onEdit()">
+              <ion-ripple-effect></ion-ripple-effect>Modifier
+            </p>
+            <p class="ion-activatable" (click)="alert()">
+              <ion-ripple-effect></ion-ripple-effect>Se déconnecter
+            </p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="fullname">
+        <h1 *ngIf="!isEdit">{{ infoUser?.fullname }}</h1>
+        <ion-input *ngIf="isEdit" value="infoUser?.fullname" formControlName="fullname"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Information -->
+  <ion-grid id="infoProfil">
+    <ion-row>
+      <ion-col size="auto">
+        <h3>Mail:</h3>
+      </ion-col>
+      <ion-col>
+        <p *ngIf="!isEdit">{{ infoUser?.mail }}</p>
+        <ion-input *ngIf="isEdit" value="infoUser?.mail" formControlName="mail"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="auto">
+        <h3>Timezone:</h3>
+      </ion-col>
+      <ion-col>
+        <p *ngIf="!isEdit">{{ infoUser?.timezone }}</p>
+        <ion-item *ngIf="isEdit">
+          <ion-label>Select a Timezone</ion-label>
+          <ion-select okText="Selectionner" formControlName="timezone">
+            <ion-select-option value="UTC-12 Baker Island / Howland Island" [selected]="infoUser?.timezone == 'UTC-12 Baker Island / Howland Island'">UTC-12 Baker Island / Howland Island</ion-select-option>
+            <ion-select-option value="UTC-11 Niue / Samoa" [selected]="infoUser?.timezone == 'UTC-11 Niue / Samoa'">UTC-11 Niue / Samoa</ion-select-option>
+            <ion-select-option value="UTC-10 Hawai / Honolulu" [selected]="infoUser?.timezone == 'UTC-10 Hawai / Honolulu'">UTC-10 Hawai / Honolulu</ion-select-option>
+            <ion-select-option value="UTC-9 Alaska" [selected]="infoUser?.timezone == 'UTC-9 Alaska'">UTC-9 Alaska</ion-select-option>
+            <ion-select-option value="UTC-8 Californie / Vancouver" [selected]="infoUser?.timezone == 'UTC-8 Californie / Vancouver'">UTC-8 Californie / Vancouver</ion-select-option>
+            <ion-select-option value="UTC-7 Arizona / Colorado / Edmonton" [selected]="infoUser?.timezone == 'UTC-7 Arizona / Colorado / Edmonton'">UTC-7 Arizona / Colorado / Edmonton</ion-select-option>
+            <ion-select-option value="UTC-6 Mexico / Chicago / Texas" [selected]="infoUser?.timezone == 'UTC-6 Mexico / Chicago / Texas'">UTC-6 Mexico / Chicago / Texas</ion-select-option>
+            <ion-select-option value="UTC-5 Montréal / Bogotá / Floride" [selected]="infoUser?.timezone == 'UTC-5 Montréal / Bogotá / Floride'">UTC-5 Montréal / Bogotá / Floride</ion-select-option>
+            <ion-select-option value="UTC-4 Guyane / Bermude / Groenland" [selected]="infoUser?.timezone == 'UTC-4 Guyane / Bermude / Groenland'">UTC-4 Guyane / Bermude / Groenland</ion-select-option>
+            <ion-select-option value="UTC-3 Buenos Aires / Rio de Janeiro" [selected]="infoUser?.timezone == 'UTC-3 Buenos Aires / Rio de Janeiro'">UTC-3 Buenos Aires / Rio de Janeiro</ion-select-option>
+            <ion-select-option value="UTC-2 Ile sandwich du Sud" [selected]="infoUser?.timezone == 'UTC-2 Ile sandwich du Sud'">UTC-2 Ile sandwich du Sud</ion-select-option>
+            <ion-select-option value="UTC-1 Cap Vert" [selected]="infoUser?.timezone == 'UTC-1 Cap Vert'">UTC-1 Cap Vert</ion-select-option>
+            <ion-select-option value="UTC+0 Islande / Lisbonne / Londres" [selected]="infoUser?.timezone == 'UTC+0 Islande / Lisbonne / Londres'">UTC+0 Islande / Lisbonne / Londres</ion-select-option>
+            <ion-select-option value="UTC+1 Paris / Cameroun / Oslo" [selected]="infoUser?.timezone == 'UTC+1 Paris / Cameroun / Oslo'">UTC+1 Paris / Cameroun / Oslo</ion-select-option>
+            <ion-select-option value="UTC+2 Athènes / Le Caire / Cape town" [selected]="infoUser?.timezone == 'UTC+2 Athènes / Le Caire / Cape town'">UTC+2 Athènes / Le Caire / Cape town</ion-select-option>
+            <ion-select-option value="UTC+3 Mayotte / Moscou / Bagdad" [selected]="infoUser?.timezone == 'UTC+3 Mayotte / Moscou / Bagdad'">UTC+3 Mayotte / Moscou / Bagdad</ion-select-option>
+            <ion-select-option value="UTC+4 Maurice / Saint-Denis / Dubaï" [selected]="infoUser?.timezone == 'UTC+4 Maurice / Saint-Denis / Dubaï'">UTC+4 Maurice / Saint-Denis / Dubaï</ion-select-option>
+            <ion-select-option value="UTC+5 Maldives / Pakistan" [selected]="infoUser?.timezone == 'UTC+5 Maldives / Pakistan'">UTC+5 Maldives / Pakistan</ion-select-option>
+            <ion-select-option value="UTC+6 Bangladesh / Kazakhstan" [selected]="infoUser?.timezone == 'UTC+6 Bangladesh / Kazakhstan'">UTC+6 Bangladesh / Kazakhstan</ion-select-option>
+            <ion-select-option value="UTC+7 Jakarta / Mongolie / Thailande" [selected]="infoUser?.timezone == 'UTC+7 Jakarta / Mongolie / Thailande'">UTC+7 Jakarta / Mongolie / Thailande</ion-select-option>
+            <ion-select-option value="UTC+8 Pékin / Singapour / Australie-Ouest" [selected]="infoUser?.timezone == 'UTC+8 Pékin / Singapour / Australie-Ouest'">UTC+8 Pékin / Singapour / Australie-Ouest</ion-select-option>
+            <ion-select-option value="UTC+9 Tokyo / Corée du Sud / Timor Oriental" [selected]="infoUser?.timezone == 'UTC+9 Tokyo / Corée du Sud / Timor Oriental'">UTC+9 Tokyo / Corée du Sud / Timor Oriental</ion-select-option>
+            <ion-select-option value="UTC+10 Brisbane / Papouasie-Nouvelle-Guinée" [selected]="infoUser?.timezone == 'UTC+10 Brisbane / Papouasie-Nouvelle-Guinée'">UTC+10 Brisbane / Papouasie-Nouvelle-Guinée</ion-select-option>
+            <ion-select-option value="UTC+11 Melbourne / Noumea" [selected]="infoUser?.timezone == 'UTC+11 Melbourne / Noumea'">UTC+11 Melbourne / Noumea</ion-select-option>
+            <ion-select-option value="UTC+12 Wallis et Futuna / Iles Marshall" [selected]="infoUser?.timezone == 'UTC+12 Wallis et Futuna / Iles Marshall'">UTC+12 Wallis et Futuna / Iles Marshall</ion-select-option>
+            <ion-select-option value="UTC+13 Fidji / Wellington" [selected]="infoUser?.timezone == 'UTC+13 Fidji / Wellington'">UTC+13 Fidji / Wellington</ion-select-option>
+            <ion-select-option value="UTC+14 Nouvelle-Zélande" [selected]="infoUser?.timezone == 'UTC+14 Nouvelle-Zélande'">UTC+14 Nouvelle-Zélande</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col>
+        <h2>Informations Générales</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col size="auto">
+        <p>Nombre de produits scannées:</p>
+      </ion-col>
+      <ion-col>
+        <p class="spacy"><span id="nbProducts">{{ infoUser?.number_scan }}</span> produits</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="stat">
+      <ion-col>
+        <p>
+          Inscrit depuis le <span class="signDate">{{ infoUser?.registration_date | date: 'd MMMM yyyy' }}</span>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row id="contact">
+      <ion-col size="auto">
+        <ion-icon name="mail"></ion-icon>
+      </ion-col>
+      <ion-col size="auto">
+        <p>contactez-nous:</p>
+      </ion-col>
+      <ion-col>
+        <p>app.tricycle@gmail.com</p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="roleUser?.includes('admin')">
+      <ion-col class="center">
+        <ion-button routerLink="/admin">Panel Admin</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+</ion-content>
