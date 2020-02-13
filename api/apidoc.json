@@ -1,0 +1,8 @@
+{
+    "name": "Tricycle Extended API documentation",
+    "version": "1.0.0",
+    "description": "API de gestion de l'application Tricycle",
+    "template": {
+        "forceLanguage": "fr"
+    }
+}
