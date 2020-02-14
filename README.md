@@ -63,3 +63,5 @@ L'application est disponible sous forme de fichier  **.apk** qui peut être inst
 Une version **Desktop** est disponible sur Windows et MacOS avec un **.exe** et **.dmg** dans le dossier ***builds*** .
 
 Le programme Arduino permet d'utiliser le scanner, l'écran LCD et le module Bluetooth, il est téléchargeable sous le nom de *finale_tricycle.ino*
+
+Afin de voir le fonctionnement de l'application vous pouvez visionner la vidéo de démonstration: https://youtu.be/WWtlz9-pH_U
